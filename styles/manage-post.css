@@ -1,0 +1,170 @@
+.manage-posts {
+    margin: 20px;
+  }
+  
+  .filters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .featured-posts {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  
+  .feature-post-option {
+    margin-right: 20px;
+  }
+  
+  /* .filter-container {
+    margin-right: 10px;
+    padding: 10px;
+  }
+   */
+
+  
+  .filter-container {
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+  
+  .filter-container input[type="text"] {
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  .post-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .post-table th,
+  .post-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .buttons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .archive-button,
+  .add-post-button,
+  .publish,
+  .unpublish {
+    color: #fff;
+    border: none;
+    padding: 5px 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    width: 100px;
+    list-style: none;
+    text-decoration: none;
+  }
+
+
+  .publish {
+    background-color: #4caf50;
+  }
+
+  .unpublish {
+    background-color: #e46334;
+  }
+
+  .archive-button {
+    background-color: #8e180e;
+  }
+
+  .add-post-button {
+    background-color: #e46334;
+  }
+  
+  .change-featured {
+    background-color: #e46334  ;
+    margin-right: 10px;
+    padding: 10px;
+    color: #ffffff;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  .save-button {
+    margin-right: 10px;
+    padding: 10px;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #4caf50;
+  }
+
+  .done-button {
+    background-color: 999999;
+  }
+
+  .archive-button i,
+  .add-post-button i {
+    margin-right: 5px;
+  }
+  
+  .log-info {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #999;
+  }
+  
+  .load-more {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .load-more button {
+    background-color: #2196f3;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .flash-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  
+  .flash-message.success {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+  }
+  
+  .flash-message.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+  }
+  
+  .flash-message.warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+  }
+  

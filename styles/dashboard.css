@@ -1,0 +1,276 @@
+* {
+  margin: 0;
+  line-height: calc(1em + 0.5rem);
+}
+
+body {
+  font-family: "poppins", sans-serif;  
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Roboto Slab", Arial , serif;
+}
+
+
+.content-wrapper {
+  background-color:  black;
+  padding: 10px;
+  border: color pink solid 20px;
+}
+
+
+nav ul li a {
+  font-family: "Poppins", Arial, sans-serif;
+  /* Additional styling properties */
+}
+
+.top-nav {
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  background-color: #25232A;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
+  height: 80px;
+  margin: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 900;
+  color: white;
+  font-size: 60px;
+}
+
+.logo img {
+  width: 60px;
+  height: 60px;
+}
+
+.logo span {
+  font-size: 60px;
+  color: #f05c26;
+  font-weight: 900;
+  margin-right: 5px;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+.account-icon {
+  font-size: 24px;
+  margin-right: 5px;
+}
+
+.username {
+  margin-right: 5px;
+}
+
+.logout {
+  border-left: 1px solid #ffffff;
+  padding-left: 10px;
+}
+
+.sidebar {
+  background-color: #E46334;
+  width: 350px;
+  height: 100vh;
+  max-height: 100vh;
+  position: fixed;
+  top: 80px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 1);
+  overflow-y: auto;
+  transition: width 0.3s ease;
+}
+
+
+
+
+.sidebar-menu {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 30px;
+  transition: margin-top 0.3s ease; /* Add transition for smooth animation */
+}
+
+
+
+
+.sidebar-menu a {
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  padding: 10px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.sidebar-menu i {
+  margin-right: 20px;
+}
+
+
+.sidebar-menu a:hover {
+color: black;
+background-color: #F88B64;
+}
+
+
+
+
+
+
+/* Dropdown menu styles */
+.sidebar-menu .has-dropdown .dropdown-menu {
+  display: none; /* Hide the dropdown menu by default */
+  list-style: none;
+}
+
+.sidebar-menu .has-dropdown.active .dropdown-menu {
+  display: block; /* Show the dropdown menu when the parent menu item is active */
+}
+
+/* Add space between menu items when the dropdown is expanded */
+.sidebar-menu .has-dropdown.active ~ li {
+  margin-top: 30px;
+}
+
+/* Additional styles for the expanded dropdown menu */
+.sidebar-menu .has-dropdown .dropdown-menu.expanded {
+  display: block;
+}
+
+
+.sidebar-menu .has-dropdown.active ~ li {
+  margin-top: 0; /* Increase the margin for expanded dropdown menu */
+}
+
+.sidebar-menu .has-dropdown.active .has-dropdown.active ~ li {
+  margin-top: 0; /* Adjust the margin for nested expanded dropdown menu */
+}
+
+
+.sidebar-menu .has-dropdown.active ~ li:not(.has-dropdown) {
+  margin-top: 0; /* Adjust the margin for other sidebar items */
+}
+ 
+
+
+
+
+
+
+.page-wrapper {
+  padding: 50px;
+  box-sizing: border-box;
+  margin-left: 350px;
+  max-width: 1050px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 80px;
+  background-color: #f6f6f6;
+}
+
+  
+  .content h1 {
+  color: #25232A;
+  }
+  
+  .content p {
+  color: #707070;
+  }
+
+
+  .sidebar-toggle {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .sidebar-toggle {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .sidebar-toggle i {
+    font-size: 24px;
+    transition: transform 0.3s ease; /* Add transition for smooth animation */
+  }
+  
+  .sidebar-toggle.open i {
+    transform: rotate(180deg); /* Rotate the icon when the sidebar is open */
+  }
+  
+
+
+
+  #post-form {
+    width: 400px;
+    margin: 20px auto;
+  }
+  
+  #post-form div {
+    margin-bottom: 10px;
+  }
+  
+  #post-form label {
+    display: inline-block;
+    width: 120px;
+  }
+  
+  #post-form input[type="text"],
+  #post-form textarea,
+  #post-form select {
+    width: 100%;
+    padding: 5px;
+  }
+  
+  #post-form input[type="file"],
+  #post-form input[type="submit"],
+  #post-form input[type="button"] {
+    margin-top: 10px;
+  }
+  
+  #post-form input[type="submit"],
+  #post-form input[type="button"] {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  #post-form input[type="submit"]:hover,
+  #post-form input[type="button"]:hover {
+    background-color: #45a049;
+  }
+  
+
+
+
+
