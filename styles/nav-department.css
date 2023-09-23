@@ -1,0 +1,113 @@
+/* .header {
+ position: fixed;
+ top: 0;
+ width: 100%;
+ z-index: 9999; 
+} */
+
+.nav-content .vertical-separator {
+  width: 2px;
+  height: 60%;
+  background-color: black;
+  margin: 0 20px;
+}
+
+nav div {
+  font-size: 25px;
+  margin: 20px 0;
+}
+
+
+.hide-nav {
+  display: none;
+  transition: 0.3s ease;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  height: 136px;
+  width: 100%;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  z-index: 9999999;
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: top 0.3s ease;
+  position: fixed;
+ top: 0;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0px;
+  margin: 0;
+  height: 92px;
+}
+
+.logo-img-wrapper {
+  height: 100%;
+  align-items: center;
+  display: flex;
+}
+
+.logo-img-wrapper img {
+  height: 100%;
+  width: auto;
+  padding: 1px;
+}
+
+.logo-wrapper div {
+  font-size: var(--size-7xl);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--clr-dark);
+}
+
+.logo-wrapper span {
+  font-size: var(--size-7xl);
+  font-weight: 900;
+  color: var(--clr-orange);
+}
+
+/* Second Navigation Bar styles */
+.second-nav {
+  position: fixed;
+  top: 136px;
+  background-color: #25232a;
+  height: 50px;
+  z-index: 999;
+  transition: top 0.3s ease;
+}
+
+.second-nav-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.second-nav-list li {
+  margin-right: 20px;
+}
+
+.second-nav-list li:last-child {
+  margin-right: 0;
+}
+
+.second-nav-list a {
+  text-decoration: none;
+  color: #f1f5f9;
+  font-size: 16px;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.second-nav-list a:hover {
+  color: #94a3b8;
+}

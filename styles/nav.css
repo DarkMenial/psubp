@@ -1,0 +1,227 @@
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .nav-content .vertical-separator {
+    width: 2px;
+    height: 100%;
+    background-color: black;
+    margin: 0 20px;
+  }
+
+  nav div {
+    font-size: 25px;
+    margin: 20px 0;
+  }
+
+  a {
+    list-style: none;
+    text-decoration: none;
+    color: inherit;
+  }
+  .link {
+    color: var(--clr-orange);
+    list-style: none;
+    text-decoration: none;
+  }
+  .link:hover{
+    text-decoration: underline;
+  }
+
+
+
+  
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    height: 136px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Add this line */
+    z-index: 99999;
+  }
+
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav li {
+    display: inline;
+    vertical-align: top;
+  }
+
+  nav.shrink {
+    height: 90px;
+  }
+
+  nav.shrink .logo-wrapper img {
+    height: 75%;
+  }
+
+  nav.shrink .logo-wrapper div,
+  nav.shrink .logo-wrapper span {
+    font-size: 60px;
+  }
+
+  nav.shrink .secondary-list {
+    display: none;
+  }
+
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0px;
+    margin: 0;
+    height: 92px; /* Set a specific height for the logo wrapper */
+  }
+  .logo-img-wrapper {
+    height: 100%; /* Set the height of the image wrapper to 100% */
+    align-items: center;
+    display: flex;
+  }
+
+  .logo-img-wrapper img {
+    height: 100%;
+    width: auto;
+    padding: 1px;
+
+  }
+
+
+
+  .logo-wrapper div {
+    font-size: var(--size-7xl);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--clr-dark);
+  }
+
+  .logo-wrapper span {
+    font-size: var(--size-7xl);
+    font-weight: 900;
+    color: var(--clr-orange);
+  }
+  .header__nav-list {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    justify-content: flex-end; /* Add this line */
+  }
+  .header__nav-list ul {
+    justify-content: flex-end;
+    padding: 0;
+    margin: 0; /* Add this line */
+    padding: 0; /* Add this line */
+    
+  }
+  .header__nav-list a {
+    display: block;
+    text-decoration: none;
+
+    color: #000000;
+    background-color: #ffffff;
+  
+  }
+
+
+  .main-list {
+    font-weight: 600;
+    font-size: 1em;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    /* height: 50%; */ /* Remove this line */
+  }
+
+
+
+  .main-list li:first-child {
+    margin-left: 0;
+  }
+  .main-list li:last-child {
+    margin-right: 0; /* Add this line */
+  }
+
+  .main-list a,
+  .secondary-list a {
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+  }
+
+
+  .secondary-list {
+    display: flex;
+    margin-top: 0;
+    font-style: italic  ;
+    margin-bottom: auto;
+    font-weight: 400;
+    padding: 0;
+    font-size: .8em;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* Hide the dropdown menu by default */
+  .social-media-icons {
+    display: none;
+    position: absolute;
+    padding: 0;
+  }
+
+  /* Style the social media icons */
+  .social-media-icons li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .social-media-icons li a {
+    display: block;
+    padding: 0;
+    font-size: 0; /* Set font size to 0 to remove any extra space */
+  }
+
+  /* Adjust the size of the icons */
+  .social-media-icons li a i {
+    font-size: 50px; /* Adjust the font size as needed */
+  }
+
+  /* Adjust the padding for the icons */
+  .social-media-icons li a i.fa-facebook {
+    padding: 0; /* Remove padding specifically for Facebook icon */
+  }
+
+  /* Show the dropdown menu when hovering over the parent link */
+  .contact-link:hover + .social-media-icons {
+    display: block;
+  }
