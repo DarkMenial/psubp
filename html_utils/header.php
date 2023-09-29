@@ -13,20 +13,35 @@
     <link rel="stylesheet" href="../../psubp/styles/programs-offered.css" />
     <link rel="stylesheet" href="../../psubp/styles/utils.css" />
     <link rel="stylesheet" href="../../psubp/styles/nav.css" />
+<<<<<<< HEAD
     <link rel="stylesheet" href="../../psubp/styles/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+=======
+    <link rel="stylesheet" href="../../psubp/styles/fontawesome-free-5.15.3-web/css/fontawesome.min.css" />
+
+
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+>>>>>>> origin/main
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
+<<<<<<< HEAD
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 
     
 
     
   <title>University Website</title>
+=======
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet"> -->
+
+    
+    <title>University Website</title>
+>>>>>>> origin/main
   </head>
   <body>
     <header class="header">
@@ -37,8 +52,12 @@
             <div class="logo-img-wrapper">
               <img src="../../psubp/public/logo.png" alt="University Logo" />
             </div>
+<<<<<<< HEAD
             <div><span><strong>Palawan State University</strong>
             <br></span>Brooke's Point</div>
+=======
+            <div><span><strong>PSU</strong></span>BP</div>
+>>>>>>> origin/main
           </a>
           
         <div class="header__nav-list">

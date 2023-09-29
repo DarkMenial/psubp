@@ -24,6 +24,7 @@
 
   <body>
   
+<<<<<<< HEAD
   <title>University Website</title>
   </head>
   <body>
@@ -41,3 +42,35 @@
           <div class="vertical-separator"></div>
        
       
+=======
+  <header class="header">
+    <nav>
+      <!-- First Navigation Bar -->
+      <div class="nav-content container">
+        <a href="index.php" class="logo-wrapper td-none">
+          <div class="logo-img-wrapper">
+            <img src="../public/logo.png" alt="University Logo" />
+          </div>
+          <div><span><strong>PSU</strong></span>BP</div>
+        </a>
+        <div class="vertical-separator"></div>
+        <div><h1>INFORMATION TECHNOLOGY</h1></div>
+      </div>
+    </nav>
+      <!-- Second Navigation Bar -->
+ 
+  </header>
+  <nav class="second-nav">
+    <div class="container">
+      <ul class="second-nav-list">
+        <li><a href="#">Overview</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">People</a></li>
+        <li><a href="#">News & Events</a></li>
+        <li><a href="#">Announcements</a></li>
+        <li><a href="#">Archive</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class = "page-wrapper">
+>>>>>>> origin/main
