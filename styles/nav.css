@@ -1,23 +1,17 @@
 header {
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-  }
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease; /* Add this line for smooth transitions */
+}
 
+.nav-content {
+  display: flex;
+  align-items: center;
+}
 
-  .nav-content .vertical-separator {
-    width: 2px;
-    height: 100%;
-    background-color: black;
-    margin: 0 20px;
-  }
-
-  nav div {
-    font-size: 25px;
-    margin: 20px 0;
-  }
 
   a {
     list-style: none;
@@ -48,9 +42,11 @@ header {
     background-color: #fff;
     transition: all 0.3s ease;
     height: 136px;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Add this line */
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.05);
     z-index: 99999;
+    transition: all 0.3s ease;
   }
+
 
 
   nav ul {
@@ -64,21 +60,25 @@ header {
     vertical-align: top;
   }
 
-  nav.shrink {
-    height: 90px;
-  }
+nav.shrink {
+  height: 90px;
+}
 
   nav.shrink .logo-wrapper img {
-    height: 75%;
+    height: 70%;
   }
 
   nav.shrink .logo-wrapper div,
   nav.shrink .logo-wrapper span {
-    font-size: 60px;
+    font-size: 20px;
   }
 
   nav.shrink .secondary-list {
     display: none;
+  }
+
+  nav.shrink.shrink-animate {
+    transform: translateY(-100%);
   }
 
   .logo-wrapper {
@@ -87,7 +87,7 @@ header {
     text-decoration: none;
     padding: 0px;
     margin: 0;
-    height: 92px; /* Set a specific height for the logo wrapper */
+    height: 90px; /* Set a specific height for the logo wrapper */
   }
   .logo-img-wrapper {
     height: 100%; /* Set the height of the image wrapper to 100% */
@@ -96,7 +96,7 @@ header {
   }
 
   .logo-img-wrapper img {
-    height: 100%;
+    height: 80%;
     width: auto;
     padding: 1px;
 
@@ -105,14 +105,22 @@ header {
 
 
   .logo-wrapper div {
-    font-size: var(--size-7xl);
-    font-weight: 700;
+    font-size: 25px;
+    font-weight: 900;
     text-transform: uppercase;
     color: var(--clr-dark);
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* padding: 10px; */
+    width: max-content;
+    margin-left: 5px;
+    margin-right: 5px;
   }
 
   .logo-wrapper span {
-    font-size: var(--size-7xl);
+    font-size: 25px;
     font-weight: 900;
     color: var(--clr-orange);
   }
@@ -134,14 +142,14 @@ header {
     text-decoration: none;
 
     color: #000000;
-    background-color: #ffffff;
+    width: auto;
   
   }
 
 
   .main-list {
     font-weight: 600;
-    font-size: 1em;
+    font-size: 20px;
     display: flex;
     list-style: none;
     padding: 0;
@@ -172,7 +180,7 @@ header {
     margin-bottom: auto;
     font-weight: 400;
     padding: 0;
-    font-size: .8em;
+    font-size: 16px;
   }
 
 
@@ -225,3 +233,5 @@ header {
   .contact-link:hover + .social-media-icons {
     display: block;
   }
+
+

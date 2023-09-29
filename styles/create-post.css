@@ -2,8 +2,10 @@
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #f0f0f0;
+  background-color: white;
   border-radius: 5px;
+  box-sizing: border-box;
+  align-items: center;
 }
 
 .add-post-container h1 {
@@ -19,19 +21,44 @@
 .add-post-container label {
   margin-bottom: 5px;
 }
-
+  
 .add-post-container input[type="text"],
-.add-post-container textarea,
 .add-post-container select,
 .add-post-container input[type="file"] {
   margin-bottom: 10px;
+  margin-top: 5px;
   padding: 5px;
   font-size: 16px;
-  width: 100%;
+  width:100%;
 }
 
+label {
+  display: flex;
+  align-items: flex-start;
+}
+
+.add-post-container select {
+  max-width: 100%;
+  display: flex;
+  left: auto;
+  margin-left: 10px;
+}
+
+.add-post-container select{
+  width: 320px;
+}
 .add-post-container textarea {
   height: 200px;
+  width: 100%;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.add-post-container .form-column textarea {
+  width: 100%;
+  max-width: 100%;
 }
 
 .add-post-container .form-row {
@@ -44,40 +71,57 @@
   flex: 1;
 }
 
+
+
+/* .add-post-container .editor {
+  border: 2px solid #ddd;
+  padding: 5px;
+  padding-bottom: 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+} */
+
+
+
+
 .add-post-container button[type="submit"],
-.add-post-container button[type="button"] {
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
+.add-post-container button[type="discard-post"] {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 4px;
+  margin-left: 10px;
 }
 
-.add-post-container button[type="button"] {
+.add-post-container button[type="submit"] {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+}
+
+.add-post-container button[type="discard-post"] {
   background-color: #ff0000;
+  color: #fff;
+  border: none;
 }
-
-.add-post-container button[type="submit"]:hover,
-.add-post-container button[type="button"]:hover {
-  opacity: 0.8;
-}
-
 
 .custom-file-upload {
-  display: inline-block;
+  display: flex;
   padding: 8px 12px;
-  background-color: #e46334;
+  background-color: #e69274;
   color: #fff;
   border-radius: 3px;
   cursor: pointer;
+  width: 70%;
+  margin-right: 10px;
+  margin-left: auto; 
+  margin-top: 5px;
 }
-
 
 
 .discard-icon {
   position: absolute;
-  color: #e46334;
+  color: #db5a2b;
   cursor: pointer;
 }
 
@@ -85,21 +129,87 @@
   color: #d1512b;
 }
 
-
 input[type="file"] {
   display: none;
 }
 
-/* .custom-file-upload {
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-  background-color: rgb(194, 198, 202);
-  color: black;
-  border-radius: 4px;
-  border: .5px solid black;
+
+.image-preview-container {
+  max-height: 200px;
+  margin-left: auto;
+  margin-right: 10px;
+  width: 90%; /* Add this to prevent the container from taking the full width */
 }
 
-.custom-file-upload input[type="file"] {
-  display: none;
-} */
+.image-preview-container img{
+width: auto;
+max-height: 165px;
+
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.publish-container {
+  margin-bottom: 10px;
+}
+
+.auto-archive-container,
+.auto-archive-label,
+.auto-archive-date-input {
+  display: flex;
+}
+
+
+.check-box-container {
+  display: flex;
+  flex-direction: column;
+  max-width: max-content;
+  align-items: flex-start;
+  top: auto;
+  margin-left: 10px;
+  
+  
+}
+.save-container {
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; 
+  justify-content: flex-start; 
+}
+
+
+.save-container .save-containers {
+  max-width: max-content;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Changed from "align-items: center;" */
+  justify-content: flex-start; /* Changed from "justify-content: baseline;" */
+}
+
+.save-containers .auto-archive-date-input,
+.save-containers .form-column #start-date,
+.save-containers .form-column #end-date {
+  width: 90px; /* Adjust the width as desired */
+  font-size: 13px;
+  width: 115px; 
+
+}
+
+
+.save-containers .check-box-container input[type="checkbox"] {
+  margin-left: 5px; 
+  margin-right: 5px;
+}
+
+
+.save-containers .check-box-container input#publish {
+  margin-left: 7px; /* Adjust the right margin as desired */
+  margin-bottom: 5px; /* Adjust the bottom margin as desired */
+}
+

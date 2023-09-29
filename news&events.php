@@ -38,71 +38,54 @@
 <div class="section"></div>
 
 <section class="container">
-<div class="container__sidemain">
-    <div class="sidebar__sticky">
+    <div id="items-container" class="container__sidemain">
+      <div class="sidebar__sticky">
         <div class="filter-section">
+          <div class="display-toggle">
+            <div class="toggle-btn active" data-display-type="grid"><i class="fas fa-th-large" style="margin-right: 10px;"></i>Grid View</div>
+            <div class="toggle-btn" data-display-type="list"><i class="fas fa-list" style="margin-right: 10px; padding: 0;"></i>List View</div>
+          </div>
           <label for="filter-author">Author:</label>
           <select id="filter-author" name="filter-author">
-              <option value="all">All</option>
-                  <?php
-                      $authorsQuery = "SELECT DISTINCT account_name FROM accounts";
-                      $authorsResult = mysqli_query($conn, $authorsQuery);
+            <option value="all">All</option>
+            <?php
+            $authorsQuery = "SELECT DISTINCT account_name FROM accounts";
+            $authorsResult = mysqli_query($conn, $authorsQuery);
 
-                  while ($username = mysqli_fetch_assoc($authorsResult)) {
-                  $authorName = $username['account_name'];
-    $formattedAuthorName = strtoupper(str_replace('_', ' ', $authorName));
-    echo '<option value="' . $authorName . '">' . $formattedAuthorName . '</option>';
-}
-?>
+            while ($username = mysqli_fetch_assoc($authorsResult)) {
+              $authorName = $username['account_name'];
+              $formattedAuthorName = strtoupper(str_replace('_', ' ', $authorName));
+              echo '<option value="' . $authorName . '">' . $formattedAuthorName . '</option>';
+            }
+            ?>
+          </select>
 
-  </select>
+          <label for="filter-topic">Topic:</label>
+          <select id="filter-topic" name="filter-topic">
+            <option value="all">All</option>
+            <?php
+            $topicsQuery = "SELECT * FROM topics";
+            $topicsResult = mysqli_query($conn, $topicsQuery);
 
-  <div class="filter-container">
-            <label for="filter-topic">Topic:</label>
-            <select id="filter-topic" name="filter-topic">
-              <option value="all">All</option>
-              <?php
-              $query = "SELECT * FROM topics";
-              $result = mysqli_query($conn, $query);
+            while ($row = mysqli_fetch_assoc($topicsResult)) {
+              $topicID = $row['topic_id'];
+              $topicName = $row['topic_name'];
 
-              while ($row = mysqli_fetch_assoc($result)) {
-                $topicID = $row['topic_id'];
-                $topicName = $row['topic_name'];
+              echo '<option value="' . $topicName . '">' . $topicName . '</option>';
+            }
 
-                $selected = ($topicID === $filterTopic) ? 'selected' : '';
-                echo '<option value="' . $topicID . '"' . $selected . '>' . $topicName . '</option>';
-              }
-
-              mysqli_free_result($result);
-              ?>
-            </select>
-          </div>
-      
-
-      <div class="display-toggle btn">
-        <button class="toggle-btn active" data-display-type="grid"><i class="fas fa-th-large"></i></button>
-        <button class="toggle-btn" data-display-type="list"><i class="fas fa-list"></i></button>
+            mysqli_free_result($topicsResult);
+            ?>
+          </select>
+        </div>
       </div>
-      
-            </div>
-      
+
+      <div class="main">
+        <?php include './admin/php/display_post_card.php'; ?>
+      </div>
     </div>
-    
-<div class="main">
-    
-        <ul id="announcements" class="grid-view list-view announcement-list">
-
-      <?php include './admin/php/display_post_card.php';?>
-
-    </div>
-  
-  
-</section> 
-
-
-
+  </section>
 </main>
-
 
 <div class="section"></div>
 
@@ -153,35 +136,52 @@ function expandCard(cardID) {
 
 
 <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  const filterAuthor = document.getElementById('filter-author');
+  const filterTopic = document.getElementById('filter-topic');
+
+  filterAuthor.addEventListener('change', filterPosts);
+  filterTopic.addEventListener('change', filterPosts);
+
   function filterPosts() {
-    // Get the selected filter values
-    var authorFilter = document.getElementById("filter-author").value;
-    var postFilter = document.getElementById("filter-post").value;
+    const author = filterAuthor.value;
+    const topic = filterTopic.value;
 
-    // Get all the card elements
-    var cards = document.querySelectorAll(".card");
+    const posts = document.querySelectorAll('.card');
+    let foundPosts = 0; // Track the number of matching posts
 
-    // Loop through each card and apply the filter
-    for (var i = 0; i < cards.length; i++) {
-      var card = cards[i];
+    posts.forEach(function(post) {
+      const postAuthor = post.getAttribute('data-author');
+      const postTopic = post.getAttribute('data-post-type');
 
-      // Get the author and post type of the card
-      var author = card.getAttribute("data-author");
-      var postType = card.getAttribute("data-post-type");
+      const displayAuthor = (author === 'all' || author === postAuthor);
+      const displayTopic = (topic === 'all' || topic === postTopic);
 
-      // Check if the card matches the selected filters
-      var authorMatch = authorFilter === "all" || author === authorFilter;
-      var postMatch = postFilter === "" || postType === postFilter;
+      if (displayAuthor && displayTopic) {
+        post.style.display = 'block';
+        foundPosts++; // Increment the count for each matching post
+      } else {
+        post.style.display = 'none';
+      }
+    });
 
-      // Show or hide the card based on the filter results
-      card.style.display = authorMatch && postMatch ? "block" : "none";
+    // Check if no matching posts were found
+    const noPostsFoundMessage = document.getElementById('no-posts-found');
+    if (foundPosts === 0) {
+      noPostsFoundMessage.style.display = 'block'; // Display the "No posts found" message
+    } else {
+      noPostsFoundMessage.style.display = 'none'; // Hide the "No posts found" message
     }
   }
+});
 
-  // Add event listeners to the filter elements
-  document.getElementById("filter-author").addEventListener("change", filterPosts);
-  document.getElementById("filter-post").addEventListener("change", filterPosts);
+
 </script>
+
+
+
+
 
 
 <?php include './html_utils/footer.php';?>

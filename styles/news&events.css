@@ -62,8 +62,6 @@ h4 {
   padding: 0 30px;
   box-sizing: border-box; /* Add this line to include padding in width calculation */
   margin: 0;
-  border:  1px solid red;
-  
 }
 
 .display-toggle {
@@ -98,7 +96,6 @@ h4 {
 }
 
 .card-bottom  {
-  border: 1px solid red;
   overflow-wrap: break-word;
   justify-content: center;
   padding: 0;

@@ -24,14 +24,20 @@
 
   <body>
   
-  <header class="header">
-    <nav>
-      <!-- First Navigation Bar -->
-      <div class="nav-content container">
-        <a href="../index.php" class="logo-wrapper td-none">
-          <div class="logo-img-wrapper">
-            <img src="../public/logo.png" alt="University Logo" />
-          </div>
-          <div><span><strong>PSU</strong></span>BP</div>
-        </a>
-        <div class="vertical-separator"></div>
+  <title>University Website</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <!-- Logo -->
+        <div class="nav-content container">
+          <a href="../../psubp/index.php" class="logo-wrapper td-none">
+            <div class="logo-img-wrapper">
+              <img src="../../psubp/public/logo.png" alt="University Logo" />
+            </div>
+            <div><span><strong>Palawan State University</strong>
+            <br></span>Brooke's Point</div>
+          </a>
+          <div class="vertical-separator"></div>
+       
+      

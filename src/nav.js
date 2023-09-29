@@ -1,5 +1,3 @@
-
-
 const nav = document.querySelector('nav');
 const navHeight = nav.offsetHeight;
 const shrinkDistance = 200; // Distance in pixels to shrink the nav
@@ -42,6 +40,10 @@ faqItems.forEach(item => {
   });
 });
 
+
+
+
+
 // JavaScript code to toggle search bar visibility
 const searchIcon = document.getElementById('search-icon');
 const searchBar = document.getElementById('search-bar');
@@ -66,3 +68,7 @@ searchIcon.addEventListener('mouseout', function() {
     searchIcon.style.color = 'black';
   }
 });
+
+
+
+

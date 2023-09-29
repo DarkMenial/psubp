@@ -1,23 +1,16 @@
 <?php include '../html_utils/header_department.php'; ?>
 <div><h2>AGRICULTURE DEPARTMENT</h2></div>
+
     </div>
   </nav>
-<nav class="second-nav">
-  <div class="container">
-    <ul class="second-nav-list">
-      <li class="active"><a href="#hero-department" data-section="hero-department">Overview</a></li>
-      <li><a href="#about" data-section="about">About</a></li>
-      <li><a href="#people" data-section="people">People</a></li>
-      <li><a href="#news-events" data-section="news-events">News & Events</a></li>
-      <li><a href="#news-events" data-section="news-events" id="announcements-link">Announcements</a></li>
-    </ul>
-  </div>
-</nav>
 </header>
+
+<?php include '../html_utils/header_department_second_nav.php'; ?>
+
 
 <section id="hero-department" class="hero-department">
   <video id="hero-department-video" autoplay muted loop>
-    <source src="../public/bsagri.mp4" type="video/mp4">
+    <!-- <source src="../public/hero/bsagri.mp4" type="video/mp4"> -->
   </video>
 </section>
 
@@ -344,7 +337,7 @@
   });
 </script>
 
-<script>
+<!-- <script>
   const heroVideo = document.getElementById('hero-department-video');
   const nav = document.querySelector('nav');
   const secondNav = document.querySelector('.second-nav');
@@ -382,6 +375,27 @@
 
   const debouncedHandleScroll = debounce(handleScroll, 10);
   window.addEventListener('scroll', debouncedHandleScroll);
+</script> -->
+
+
+<script>
+const secondNav = document.querySelector('.second-nav');
+const threshold = 100; // Adjust this value as needed
+
+secondNav.classList.toggle('fixed');
+
+function handleScroll() {
+  const scrollPosition = window.scrollY || window.pageYOffset;
+
+  if (scrollPosition > threshold) {
+    secondNav.classList.add('fixed');
+  } else {
+    secondNav.classList.remove('fixed');
+  }
+}
+
+window.addEventListener('scroll', handleScroll);
+
 </script>
 
 <script>

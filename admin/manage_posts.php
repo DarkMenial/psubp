@@ -24,19 +24,16 @@ if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
   ?>
 
   <main class="page-wrapper">
-    <div class="box">
+  <!-- <div class="box"> -->
     <div class="lg-box">
 
       <!-- Content of the dashboard goes here -->
-      <h1>Manage Post </h1>
+      <h1>Manage Post</h1>
+
       <div class="manage-posts">
-
-
-
-      
         <div class="featured-posts">
           <h3>Featured Posts</h3>
-          
+         
             <button class="change-featured">Change</button>
 <div class="feature-post-options hidden">
   <form id="featurePostForm" method="POST" action="update_featured_post.php">
@@ -60,44 +57,44 @@ if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
       
 
 
-        <div class="filters">
+<div class="filters">
           <input type="text" placeholder="Search Post..." class="search-post" />
 
           <div class="filter-container">
-            <label for="filter-account">Account:</label>
+            <label for="filter-author">Account:</label>
             <select id="filter-author" name="filter-author">
-            <option value="all">All</option>
-            <?php
-            $authorsQuery = "SELECT DISTINCT account_name FROM accounts";
-            $authorsResult = mysqli_query($conn, $authorsQuery);
+              <option value="all">All</option>
+              <?php
+              $authorsQuery = "SELECT DISTINCT account_name FROM accounts";
+              $authorsResult = mysqli_query($conn, $authorsQuery);
 
-            while ($username = mysqli_fetch_assoc($authorsResult)) {
-              $authorName = $username['account_name'];
-              $formattedAuthorName = strtoupper(str_replace('_', ' ', $authorName));
-              echo '<option value="' . $authorName . '">' . $formattedAuthorName . '</option>';
-            }
-            ?>
-          </select>
+              while ($username = mysqli_fetch_assoc($authorsResult)) {
+                $authorName = $username['account_name'];
+                $formattedAuthorName = strtoupper(str_replace('_', ' ', $authorName));
+                echo '<option value="' . $authorName . '">' . $formattedAuthorName . '</option>';
+              }
+              ?>
+            </select>
           </div>
 
           <div class="filter-container">
             <label for="filter-topic">Topic:</label>
             <select id="filter-topic" name="filter-topic">
-            <option value="all">All</option>
-            <?php
-            $topicsQuery = "SELECT * FROM topics";
-            $topicsResult = mysqli_query($conn, $topicsQuery);
+              <option value="all">All</option>
+              <?php
+              $topicsQuery = "SELECT * FROM topics";
+              $topicsResult = mysqli_query($conn, $topicsQuery);
 
-            while ($row = mysqli_fetch_assoc($topicsResult)) {
-              $topicID = $row['topic_id'];
-              $topicName = $row['topic_name'];
+              while ($row = mysqli_fetch_assoc($topicsResult)) {
+                $topicID = $row['topic_id'];
+                $topicName = $row['topic_name'];
 
-              echo '<option value="' . $topicName . '">' . $topicName . '</option>';
-            }
+                echo '<option value="' . $topicID . '">' . $topicName . '</option>';
+              }
 
-            mysqli_free_result($topicsResult);
-            ?>
-          </select>
+              mysqli_free_result($topicsResult);
+              ?>
+            </select>
           </div>
         </div>
 
@@ -124,10 +121,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
       </div>
     </div>
     </div>
-    </div>
-  </div>
-  </main>
 
+  </main>
+  </div>
+  </div>
 
   <script type="module" src="../src/dropdown.js"></script>
   <script type="module" src="../src/manage-posts.js"></script>
@@ -185,48 +182,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
   });
 </script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const filterAuthor = document.getElementById('filter-author');
-  const filterTopic = document.getElementById('filter-topic');
-
-  filterAuthor.addEventListener('change', filterPosts);
-  filterTopic.addEventListener('change', filterPosts);
-
-  function filterPosts() {
-    const author = filterAuthor.value;
-    const topic = filterTopic.value;
-
-    const posts = document.querySelectorAll('.card');
-    let foundPosts = 0; // Track the number of matching posts
-
-    posts.forEach(function(post) {
-      const postAuthor = post.getAttribute('data-author');
-      const postTopic = post.getAttribute('data-post-type');
-
-      const displayAuthor = (author === 'all' || author === postAuthor);
-      const displayTopic = (topic === 'all' || topic === postTopic);
-
-      if (displayAuthor && displayTopic) {
-        post.style.display = 'block';
-        foundPosts++; // Increment the count for each matching post
-      } else {
-        post.style.display = 'none';
-      }
-    });
-
-    // Check if no matching posts were found
-    const noPostsFoundMessage = document.getElementById('no-posts-found');
-    if (foundPosts === 0) {
-      noPostsFoundMessage.style.display = 'block'; // Display the "No posts found" message
-    } else {
-      noPostsFoundMessage.style.display = 'none'; // Hide the "No posts found" message
-    }
-  }
-});
-
-</script>
-
 
   </body>
 
@@ -238,9 +193,3 @@ document.addEventListener('DOMContentLoaded', function() {
   exit();
 }
 ?>
-
-
-
-
-
-

@@ -6,7 +6,7 @@
 
 <section id="hero" class="hero">
   <video id="hero-video" autoplay muted loop>
-    <source src="./public/psu_hero.mp4" type="video/mp4">
+    <source src="./public/hero/psu.mp4" type="video/mp4">
   </video>
   <div class="hero-content">
     <h2>Welcome to Palawan State University</h2>
@@ -106,7 +106,7 @@
       <i id="left" class="fas fa-angle-left"></i>
       <ul class="carousel">
         <li class="course-card btn-transparent">
-          <img src="./public/programs/bscrim.jpg" alt="Bachelor of Science in Criminology">
+          <img src="./public/programs/bscrim.jpg" alt="Bachelor of Science in Criminology" draggable="false">
           <h3>Bachelor of Science in Criminology</h3>
           <div class="course-department">
             <p>Department: Criminology</p>
@@ -114,7 +114,7 @@
           <button class="view-button" data-department="criminology">View Department</button>
         </li>
         <li class="course-card btn-transparent">
-          <img src="./public/programs/bsba.jpg" alt="Bachelor of Science in Business Administration">
+          <img src="./public/programs/bsba.jpg" alt="Bachelor of Science in Business Administration" draggable="false">
           <h3>Bachelor of Science in Business Administration</h3>
           <div class="course-department">
             <p>Department: Business Administration</p>
@@ -122,7 +122,7 @@
           <button class="view-button" data-department="business-administration">View Department</button>
         </li>
         <li class="course-card btn-transparent">
-          <img src="./public/programs/bshrm.jpg" alt="Bachelor of Science in Hospitality Management">
+          <img src="./public/programs/bshrm.jpg" alt="Bachelor of Science in Hospitality Management" draggable="false">
           <h3>Bachelor of Science in Hospitality Management</h3>
           <div class="course-department">
             <p>Department: Hospitality Management</p>
@@ -130,7 +130,7 @@
           <button class="view-button" data-department="hospitality-management">View Department</button>
         </li>
         <li class="course-card btn-transparent">
-          <img src="./public/programs/bsagri.jpg" alt="Bachelor of Science in Agriculture">
+          <img src="./public/programs/bsagri.jpg" alt="Bachelor of Science in Agriculture" draggable="false">
           <h3>Bachelor of Science in Agriculture</h3>
           <div class="course-department">
             <p>Department: Agriculture</p>
@@ -138,7 +138,7 @@
           <button class="view-button" data-department="agriculture">View Department</button>
         </li>
         <li class="course-card btn-transparent">
-          <img src="./public/programs/bsit.jpg" alt="Bachelor of Science in Information Technology">
+          <img src="./public/programs/bsit.jpg" alt="Bachelor of Science in Information Technology" draggable="false">
           <h3>Bachelor of Science in Information Technology</h3>
           <div class="course-department">
             <p>Department: Information Technology</p>
@@ -146,7 +146,7 @@
           <button class="view-button" data-department="information-technology">View Department</button>
         </li>
         <li class="course-card btn-transparent">
-          <img src="./public/programs/beed.jpg" alt="Bachelor of Elementary Education">
+          <img src="./public/programs/beed.jpg" alt="Bachelor of Elementary Education" draggable="false">
           <h3>Bachelor of Elementary Education</h3>
           <div class="course-department">
             <p>Department: Elementary Education</p>
@@ -154,7 +154,7 @@
           <button class="view-button" data-department="elementary-education">View Department</button>
         </li>
         <li class="course-card btn-transparent">
-          <img src="./public/programs/bsed.jpg" alt="Bachelor of Secondary Education">
+          <img src="./public/programs/bsed.jpg" alt="Bachelor of Secondary Education" draggable="false">
           <h3>Bachelor of Secondary Education</h3>
           <div class="course-department">
             <p>Department: Secondary Education</p>
@@ -170,6 +170,8 @@
     </div>
   </div>
 </section>
+
+
 
 <!-- <section class="programs">
   <div class="container">
@@ -267,9 +269,16 @@
 
   </main>
 
+<script type="module" src="./src/nav.js"></script>
+<script type="module" src="./src/carousel.js" defer></script>
+<script type="module" src="./src/script.js" defer></script>
+<script type="module" src="./src/card-toggle.js"></script>
+<script type="module" src="./src/grid&list.js"></script>
+
+
 
   <script>
-    const hero = document.querySelector('.hero');
+const hero = document.querySelector('.hero');
 const video = document.querySelector('#hero-video');
 const content = document.querySelector('.hero-content');
 
@@ -288,8 +297,10 @@ const observer = new IntersectionObserver(function(entries) {
 });
 
 observer.observe(hero);
-
   </script>
+
+  
+  
 
 
   <?php include './html_utils/footer.php';?>

@@ -6,6 +6,9 @@
   </footer>
   </main>
 
-  <script type="module" src="../src/main.js"></script>
+  <!-- <script type="module" src="../../psubp/src/main.js"></script> -->
+  <script type="module" src="../../psubp/src/main.js" defer></script>
+
+  
   </body>
 </html>

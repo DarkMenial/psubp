@@ -24,7 +24,9 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 
     
-    <title>University Website</title>
+
+    
+  <title>University Website</title>
   </head>
   <body>
     <header class="header">
@@ -35,7 +37,8 @@
             <div class="logo-img-wrapper">
               <img src="../../psubp/public/logo.png" alt="University Logo" />
             </div>
-            <div><span><strong>PSU</strong></span>BP</div>
+            <div><span><strong>Palawan State University</strong>
+            <br></span>Brooke's Point</div>
           </a>
           
         <div class="header__nav-list">
