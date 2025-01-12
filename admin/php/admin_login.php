@@ -1,15 +1,9 @@
 <?php
 session_start();
 require_once 'db_connect.php';
+require_once 'activity_logs.php'; // Include the activity_logs.php file
+require_once 'get_session.php';
 
-// Check if the user is already logged in
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    // Redirect to the dashboard
-    header("location: ../admin/dashboard.php");
-    exit;
-}
-
-<<<<<<< HEAD
 if (isset($_POST['username']) && isset($_POST['password'])) {
     function validate($data)
     {
@@ -22,69 +16,37 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = validate($_POST['username']);
     $password = validate($_POST['password']);
 
-    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-    $result = mysqli_query($conn, $sql);
+    // Use prepared statements to prevent SQL injection
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
+    $stmt->bind_param("ss", $username, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if (mysqli_num_rows($result) === 1) {
-        $row = mysqli_fetch_assoc($result);
-        if ($row['username'] === $username && $row['password'] === $password) {
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['name'] = $row['name'];
-            $_SESSION['id'] = $row['id'];
-            header("Location: ../../admin/dashboard.php");
-            exit();
-        }
+    if ($result->num_rows === 1) {
+        $row = $result->fetch_assoc();
+        $_SESSION['username'] = $row['username'];
+        
+        // Check if 'name' column exists in the result set before setting $_SESSION['name']
+        $_SESSION['name'] = $row['name'] ?? ""; // Using null coalescing operator for cleaner code
+        $_SESSION['id'] = $row['id'];
+
+        // Add the user's session to the database
+        $sessionId = session_id();
+        addSession($_SESSION['id'], $sessionId);
+
+        // Request OTP
+        header("Location: ../../admin/php/send_otp.php");
+        exit();
+    } else {
+        // If login fails, set an error message
+        $_SESSION['error'] = "Incorrect Username or Password";
+        header("Location: ../../admin/login.php");
+        exit();
     }
-
-    // If the execution reaches this point, it means login failed
-    $_SESSION['error'] = "Incorrect Username or Password";
+} else {
+    // If username or password is not set in POST request
+    $_SESSION['error'] = "Please enter both username and password";
     header("Location: ../../admin/login.php");
     exit();
-=======
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve the entered username and password
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-
-    try {
-        // Create a PDO connection
-        $pdo = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        // Prepare and execute the SQL query to fetch the user record
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
-        $stmt->bindParam(":username", $username, PDO::PARAM_STR);
-        $stmt->execute();
-
-        // Fetch the user record from the result
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user) {
-            // User record found, check if the password matches
-            if (password_verify($password, $user['password'])) {
-                // Password is correct
-                // Store data in session variables
-                $_SESSION["loggedin"] = true;
-                $_SESSION["username"] = $username;
-
-                // Redirect to the dashboard
-                header("location: ../admin/dashboard.php");
-                exit;
-            } else {
-                // Invalid password
-                $error_message = "Wrong password.";
-            }
-        } else {
-            // User record not found
-            $error_message = "Username not found.";
-        }
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
-
-    // Close the PDO connection
-    $pdo = null;
->>>>>>> origin/main
 }
 ?>

@@ -1,16 +1,108 @@
-<<<<<<< HEAD
-<?php include './html_utils/header.php';?>
-=======
+<?php
+// Function to include the correct header based on the department
+function includeHeader($department = null) {
+    if ($department) {
+        include $_SERVER['DOCUMENT_ROOT'] . '/psubp/html_utils/header_department.php'; // Department-specific header
+    } else {
+        include $_SERVER['DOCUMENT_ROOT'] . '/psubp/html_utils/header.php'; // Default university-wide header
+    }
+}
+
+// Check if a department is specified
+$department = $department ?? null; // Use the department passed from the including script
+
+// Include the appropriate header
+includeHeader($department);
+
+// Define department-specific content
+$departments = [
+    'agriculture' => [
+        'sections' => [
+            'mission' => [
+                'title' => 'Mission',
+                'content' => 'Our mission is to educate and empower the next generation of agricultural professionals...',
+            ],
+            'programs_courses' => [
+                'title' => 'Programs & Courses',
+                'content' => 'We offer a wide range of programs and courses designed to meet the diverse interests...',
+            ],
+            'people' => [
+                'title' => 'People',
+                'content' => 'Meet our dedicated faculty, staff, and students who are at the heart of our department...',
+            ],
+            'news_events' => [
+                'title' => 'News & Events',
+                'content' => 'Stay up-to-date with the latest news and events happening in our department...',
+            ],
+        ],
+    ],
+    // Add more departments as needed
+];
+
+$currentDepartment = $departments[$department] ?? null; // Get the specific department's content
+
+// Define university-wide "About" content (used as fallback if no department is specified)
+$universityAbout = [
+    'history' => [
+        'title' => 'History',
+        'content' => 'The Palawan State University (PSU) has its humble beginnings...',
+    ],
+    'mission' => [
+        'title' => 'Mission',
+        'content' => 'Palawan State University is committed to upgrading people’s quality of life...',
+    ],
+    'vision' => [
+        'title' => 'Vision',
+        'content' => 'An internationally recognized university that provides relevant and innovative...',
+    ],
+    'quality-policy' => [
+        'title' => 'Quality & Policy',
+        'content' => 'We Provide equal opportunities for relevant, innovative and...',
+    ],
+    // Add more sections as needed
+];
+?>
+
+<?php
+// Define department-specific banners and titles
+$banners = [
+    'agriculture' => [
+        'image' => '/psubp/public/agriculture_banner.jpg',
+    ],
+    'information_technology' => [
+        'image' => '/psubp/public/it_banner.jpg',
+    ],
+    'criminology' => [
+        'image' => '/psubp/public/criminology_banner.jpg',
+    ],
+    // Add more departments as needed
+];
+
+// Default banner and title for the university-wide "About PSU" page
+$defaultBanner = [
+    'image' => '/psubp/public/banner.jpg',
+];
+
+// Use department-specific banner if department is set, otherwise use the default PSU banner
+$bannerDetails = isset($department) && array_key_exists($department, $banners) ? $banners[$department] : $defaultBanner;
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../styles/modern-normalize.css" />
-    <link rel="stylesheet" href="../styles/style.css" />
-    <link rel="stylesheet" href="../styles/utils.css" />
-    <link rel="stylesheet" href="../styles/news&events.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About PSU</title>
+    <!-- Include your CSS files -->
+    <link rel="stylesheet" href="/psubp/styles/modern-normalize.css">
+    <link rel="stylesheet" href="/psubp/styles/post.css">
+    <link rel="stylesheet" href="/psubp/styles/academic-calendar.css">
+    <link rel="stylesheet" href="/psubp/styles/news&events.css">
+    <link rel="stylesheet" href="/psubp/styles/style.css">
+    <link rel="stylesheet" href="/psubp/styles/utils.css">
+    <link rel="stylesheet" href="/psubp/styles/nav-department.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
@@ -18,256 +110,59 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
-    <title>University Website</title>
-  </head>
-  
+</head>
 <body>
 
-  <header class="header">
-    <nav>
-      <!-- Logo -->
-      <div class="nav-content container">
-        <a href="index.html" class="logo-wrapper td-none">
-          <div class="logo-img-wrapper">
-            <img src="../public/logo.png" alt="University Logo" />
-          </div>
-          <div><span><strong>PSU</strong></span>BP</div>
-        </a>
-        
-      <div class="header__nav-list">
-        <!-- Secondary NavList (upper) -->
-        <ul class="secondary-list">
-          <li>
-            <a href="./about.html">About</a>
-              <ul class="dropdown">
-                <li><a href="../about.html#mission&vission">Mission & Vission</a></li>
-                    <li><a href="../about.html#history">History</a></li>
-                    <li><a href="../about.html#quality-policy">Quality Policy</a></li>
-                    <li><a href="faculty&staff.html#faculty-and-staff">Faculty and Staff</a></li>
-                    <li><a href="../about.html#organizationl-chart">Organizational Chart</a></li>
-                    <li><a href="#contact-us#">Contact Us</a>
-                       <ul class="has-dropdown sub-dropdown social-media-icons">
-                          <li><a href="#" class="social-icon"><i class="fab fa-facebook"></i></a></li>
-                          <li><a href="#" class="social-icon"><i class="fab fa-instagram"></i></a></li>
-                          <li><a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a></li>
-                        </ul>
-                      </li>
-          </li>
-        </ul>
-              
-           
-    
-          <li>
-            <a href="news&events.html">News & Events</a>
-            <!-- <ul class="dropdown">
-              <li><a href="#">Admission Office Announcements</a></li>
-              <li><a href="#">Academic Department News</a>
-                <ul class="has-dropdown sub-dropdown">
-                  <li><a href="./academic_department/bsed.html#N&E">BSED</a></li>
-                  <li><a href="./academic_department/beed.html#N&E">BEED</a></li>
-                  <li><a href="./academic_department/bscrim.html#N&E">BSCRIM</a></li>
-                  <li><a href="./academic_department/bsit.html#N&E">BSIT</a></li>
-                  <li><a href="./academic_department/bshm.html#N&E">BSHM</a></li>
-                  <li><a href="./academic_department/bsagri.html#N&E">BSAGRI</a></li>
-                  <li><a href="./academic_department/bsba.html#N&E">BSBA</a></li>
-                </ul>
-              </li>
-              <li><a href="pta.html#N&E">PTA News & Events</a></li>
-            </ul> -->
-          </li>
-          <li>
-            <a href="directory.html">Directory</a>
-          </li>
-        </ul>
-        <!-- Main NavList (lower) -->
-        <ul class="main-list">
+<section></section>
 
-
-          <!-- <li>
-            <div class="search-container">
-              <input type="text" id="search-bar" placeholder="Search">
-            </div>
-            <div class="search-button"><i id="search-icon" class="fa fa-search"></i></div>
-          </li> -->
-
-          <li>
-            <a href="#">ACADEMICS</a>
-            <ul class="dropdown">
-              <li><a href="./academic_calendar.html">Academic Calendar</a></li>
-              <li><a href="./academic_departments.html">Academic Departments</a></li>
-              <li><a href="./admission_programs.html">Programs Offered</a></li>
-              <li><a href="academics.html#undergraduate-programs">Programs Head</a></li>  
-              <!-- <li><a href="academics.html#majors">Majors</a></li> -->
-            </ul>
-          </li>
-
-          <li>  
-            <a href="admission.html#admissions">ADMISSIONS</a>
-          <ul class="dropdown">
-            <li><a href="./admission_requirements.html">Admission Requirements</a></li>
-            <li><a href="./admission_process.html">Admission Process</a></li>
-            <li><a href="./academic_calendar.html">Academic Calendar</a></li>
-            <li><a href="./portals.html">Portals</a></li>
-            </ul>
-          </li>  
-          <li><a href="student-affairs.html#student-affairs">STUDENT AFFAIRS</a>
-            <ul class="dropdown">
-                  <li><a href="student-government.html#student-government">Student Government</a></li>
-                  <li><a href="#">Student Resources</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      </div>
-    </nav>
-    
-  </header>
->>>>>>> origin/main
-
-
-  <main>
-
-
-    <section class="container__pages container__banner">
-      <div>
+<!-- Main Content -->
+<main class="main-content">
+<section class="container__pages container__banner">
+    <!-- Banner Image and Title -->
+    <div>
         <div class="banner__content">
-          <h2>About PSU</h2>
+            <h2>About</h2>
         </div>
-<<<<<<< HEAD
-        <img src="./public/banner.jpg" alt="Banner Image" />
-=======
-        <img src="/banner.jpg" alt="Banner Image" />
->>>>>>> origin/main
+        <img src="<?php echo htmlspecialchars($bannerDetails['image']); ?>" alt="Banner Image">
         <div class="banner__overlay"></div>
-      </div>
+    </div>
+</section>
+
+
+
+    <section id="about" class="container">
+        <!-- Sidebar and Main Content -->
+        <div class="container__sidemain">
+            <div class="sidebar__sticky">
+                <?php
+                // Display sidebar buttons based on current content (department or university-wide)
+                $content = isset($currentDepartment) ? $currentDepartment['sections'] : $universityAbout;
+                foreach ($content as $sectionId => $section) {
+                    echo '<button class="nav-button" data-section="' . $sectionId . '">' . $section['title'] . '</button>';
+                }
+                ?>
+            </div>
+            <div class="main">
+                <?php
+                // Display main content based on current content (department or university-wide)
+                foreach ($content as $sectionId => $section) {
+                    echo '<section id="' . $sectionId . '">';
+                    echo '<div class="container page_container">';
+                    echo '<h1>' . $section['title'] . '</h1>';
+                    echo '<p>' . $section['content'] . '</p>';
+                    echo '</div>';
+                    echo '</section>';
+                    echo '<div class="section"></div>';
+                    echo '<div class="sectionline"></div>';
+                    echo '<div class="section"></div>';
+                }
+                ?>
+            </div>
+        </div>
     </section>
+</main>
 
-
-<div class="section"></div>
-
-
-
-    <section class="container">
-
-      <div class="container__sidemain">
-        
-        <div class="sidebar__sticky">
-    
-          <button class="nav-button" data-section="history">History</button>   
-          <button class="nav-button" data-section="mission">Mission</button>
-          <button class="nav-button" data-section="vision">Vision</button>
-          <button class="nav-button" data-section="quality-policy">Quality Policy</button>
-          
-
-    
-          
-        </div>
-    
-        <div class="main">
-
-          <section id="history">
-            <div class="container">
-              <h2>Our History</h2>
-              <p>The Palawan State University (PSU) has its humble beginnings as a teacher-training
-                institution known as Palawan Teacher’s College (PTC). The school was founded on June 19, 1965 
-                through Republic Act 4303 and has started operating since March 2, 1972. In 1984, PTC was recognized as 
-                Palawan State College by virtue of Batas Pambansa 797 which authorized the school to offer other 
-                undergraduate degrees in the Arts, Sciences and Technology. The conversion into a state university 
-                came a decade later in November 12, 1994 through Republic Act 7818. After 48 years, the Palawan State 
-                University emerged as the premier institute of higher learning in the province of Palawan, with more than 
-                26,000 students and almost 1000 faculty and staff members.
-                <br><br>
-               The Palawan State University, the first University in Region IV, has 19 campuses all-over the province. 
-               The main campus situated in Tiniguiban, Puerto Princesa City is sprawled on a 68-hectare site where the 
-               central administration and executive offices, undergraduate and graduate colleges and the Laboratory 
-               High School are located. The Laboratory Elementary School, Graduate School and the School of Law are housed in 
-               buildings at the Manalo Campus, Puerto Princesa City. The main campus has eight colleges 
-               (College of Arts and Humanities, College of Business and Accountancy, College of 
-               Engineering, Architecture and Technology, College of Hospitality Management and Tourism, College of 
-               Nursing and Health Sciences, College of Sciences, College of Teacher Education, and College of Criminal Justice Education) 
-               established to fulfil the university’s four-fold function of instruction, research, extension and production.</p>
-            </div>
-          </section>
-
-
-
-          <div class="sectionline"></div>
-
-            <section id="mission&vission">
-              <div class="container">
-                <h2>Our Mission</h2>
-                <p>Palawan State University is committed to upgrade people’s quality of life by 
-                  providing education opportunities through excellent instruction, research and 
-                  innovation, extension, production services, and transnational collaborations</p>
-              </div>
-
-              <div class="sectionline"></div>
-
-              <div class="container">
-                <h2>Our Vision</h2>
-                <p>An internationally recognized university that provides relevant and innovative 
-                  education and research for lifelong learning and sustainable development</p>
-              </div>
-            </section>
-
-          
-            <div class="sectionline"></div>
-          
-
-          <section id="quality-policy">
-            <div class="container">
-              <h2>Quality Policy</h2>
-              <p>We Provide equal opportunities for relevant, innovative and
-                internationally recognized higher education programs and advanced
-                studies for lifelong learning and sustainable development
-                <br><br>
-                We Strongly commit to deliver excellence in instruction, research,
-                extension and transnational programs in order to meet the
-                increasing levels of stakeholder demand as well as statutory and
-                regulatory requirements.
-                <br><br>
-                The University shall continue to monitor, review and upgrade its
-                quality management system to ensure compliance with national and
-                international standards and requirements.</p>
-            </div>
-          </section>
-
-
-        </div>
-      </div>
-      
-      
-    </section> 
-<<<<<<< HEAD
- 
-  </main>
-  <?php include './html_utils/footer.php';?>
-=======
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-
-    
-  </main>
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2023 My Website. All Rights Reserved.</p>
-      <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-  </div>
-  </footer>
-  <script type="module" src="./src/main.js"></script>
-  </body>
+<!-- Footer -->
+<?php include $_SERVER['DOCUMENT_ROOT'] .'/psubp/html_utils/footer.php'; ?>
+</body>
 </html>
-
-
->>>>>>> origin/main

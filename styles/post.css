@@ -1,0 +1,167 @@
+.post-container {
+    display: flex;
+    margin: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden; /* Ensure the shadow and border don't extend outside the container */
+}
+
+.post-container-image {
+    width: fit-content;
+    height: fit-content;
+    max-width: 500px; /* Set the maximum width for the image */
+    padding: 10px; /* Add some padding for separation */
+    box-sizing: border-box; /* Include padding in width calculations */
+}
+
+.post-container-image img {
+    width: 100%; /* Ensure the image takes up the entire width of the container */
+    max-height: 1000px;
+}
+
+.post-container-content {
+    padding: 0 20px; /* Add more padding for content */
+    box-sizing: border-box; /* Include padding in width calculations */
+    flex: 1; /* Allow the content to grow and take up remaining space */
+}
+
+.post-container-content h1 {
+ color: var(--clr-dark);
+ font-size: 25px;
+}
+
+.container__posts {
+    /* background-color: #f9f9f9; */
+    background-color: #efe1c4;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row; /* Stack posts vertically */
+
+}
+
+
+.container-post-topic {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.container-post-topic h1{
+ font-size: 35px;
+ color: var(--clr-orange);
+
+}
+
+
+
+
+
+
+
+
+
+
+/* Hero section styles */
+.hero {
+    position: relative;
+    height: 120vh;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid;
+  }
+  
+  /* .overlay {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent; 
+    z-index: 5;
+  } */
+  
+  
+  #hero-video {
+    position: absolute;
+    top: 136px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 136px);
+    object-fit: cover;
+  }
+  
+  .hero-content {
+    text-align: center;
+    z-index: 2;
+    color: #fff;
+    position: sticky;
+    top: 180px;
+    margin-top: -136px;
+    height: max-content;
+  }
+  
+  .hero-content h1,
+  .hero-content h2,
+  .hero-content p {
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero-content h1 {
+    font-size: 4.5rem;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  
+  .hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-content button {
+    font-size: 1.2rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--clr-orange);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+  }
+  
+  .hero-content button:hover {
+    background-color: var(--clr-dark);
+  }
+  
+  .hero-content button a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .hero-content button a:hover {
+    text-decoration: underline;
+  }
+  
+  
+  
+  /* Add this CSS to your stylesheet */
+.background-image {
+    filter: blur(5px); /* Adjust the blur amount as needed */
+    width: 100%; /* Set the width of the background image container */
+    height: 100%; /* Set the height of the background image container */
+    position: fixed; /* Make the background image fixed so it covers the entire viewport */
+    top: 0;
+    left: 0;
+    z-index: -1; /* Place it behind the content */
+  }
+  

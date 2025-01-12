@@ -6,12 +6,10 @@ $filterAuthor = $_GET['filter-author'] ?? 'all';
 $filterTopic = $_GET['filter-topic'] ?? 'all';
 
 // Construct the SQL query based on the filter values
-$query = "SELECT p.id, p.title, p.image, p.content, t.topic_name, a.account_name, u.full_name, p.publish, p.date_posted
-FROM posts p
-JOIN users u ON p.user_id = u.id
-JOIN account_users au ON u.id = au.user_id
-JOIN accounts a ON au.account_id = a.account_id
-JOIN topics t ON p.topic_id = t.topic_id";
+$query = "SELECT p.id, p.title, p.image, p.content, t.topic_name, a.account_name, p.publish, p.date_posted
+          FROM posts p
+          JOIN accounts a ON p.account_id = a.account_id
+          JOIN topics t ON p.topic_id = t.topic_id";
 
 // Add filters to the query if specified
 if ($filterAuthor !== 'all') {
@@ -22,6 +20,12 @@ if ($filterTopic !== 'all') {
     $topicID = mysqli_real_escape_string($conn, $filterTopic);
     $query .= " AND t.topic_id = '$topicID'";
 }
+
+// Exclude archived posts from the results
+$query .= " AND p.archived = 0";
+
+// Group the results by post ID to avoid duplicates
+$query .= " GROUP BY p.id";
 
 // Execute the SELECT query
 $result = mysqli_query($conn, $query);
@@ -41,7 +45,7 @@ if ($result) {
             echo '<div class="card expandable-card" id="' . $cardID . '" data-author="' . $author . '" data-post-type="' . $postType . '">';
             echo '<div class="card-header">';
             echo '<div class="card-thumbnail">';
-            echo '<img src="./public/posts/' . $post['image'] . '" alt="Announcement Image" class="card-image">';
+            echo '<img src="../../psubp/public/posts/images/' . $post['image'] . '" alt="Announcement Image" class="card-image">';
             echo '</div>';
             echo '<div class="card-details">';
             echo '<div class="card-top">';
@@ -52,7 +56,7 @@ if ($result) {
             echo '<h3>' . $post['title'] . '</h3>';
             echo '</div>';
             echo '<p class="card-author">' . $post['account_name'] . '</p>';
-            echo '<div class="card-meta">';
+            echo '<div class "card-meta">';
             echo '<p class="card-date">' . $post['date_posted'] . '</p>';
             echo '</div>';
             echo '<button class="expand-button" onclick="expandCard(\'' . $cardID . '\')">';
@@ -89,7 +93,7 @@ if ($result) {
 
             // Modify the href attribute to include the underscore (_) in the title
             $postFileName = str_replace(' ', '_', $post['title']);
-            echo '<a href="./posts/' . $postFileName . '.php" class="view-post-button">VIEW ' . strtoupper($post['topic_name']) . '<i class="fas fa-external-link-alt"></i></a>';
+            echo '<a href="./public/posts/' . $postFileName . '.php" class="view-post-button">VIEW ' . strtoupper($post['topic_name']) . '<i class="fas fa-external-link-alt"></i></a>';
 
             echo '</div>';
             echo '<div class="card-footer">';

@@ -1,13 +1,44 @@
 <?php
-session_start();
+include './php/check_login.php';
+include './admin_utils/admin_header.php';
 
-if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
-  ?>
+// Get the logged-in user's ID
+$loggedInUserID = $_SESSION['id'];
 
-<?php include './admin_utils/admin_header.php'; ?>
+// Function to check if user has a specific permission
+function hasPermission($userID, $permissionName) {
+    global $conn;
+
+    $sql = "SELECT p.name AS permission_name 
+            FROM users u
+            JOIN user_permissions up ON u.id = up.user_id
+            JOIN permissions p ON up.permission_id = p.id
+            WHERE u.id = '$userID'";
+
+    $result = mysqli_query($conn, $sql);
+
+    $userPermissions = [];
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $userPermissions[] = $row['permission_name'];
+        }
+    }
+
+    return in_array($permissionName, $userPermissions);
+}
+
+// Check if user has admin or create_profile permission
+$hasPermission = hasPermission($loggedInUserID, 'admin') || hasPermission($loggedInUserID, 'create_profile');
+
+// Redirect if the user does not have permission to create a profile or admin rights
+if (!$hasPermission) {
+    echo '<script>window.location.href = "manage_profiles.php";</script>';
+    exit();
+}
+?>
 
 <main class="page-wrapper">
-  <div class="card">
+  <div class="card sm-box">
     <div class="card-body">
       <form id="myForm" action="./php/get_profile.php" method="POST" enctype="multipart/form-data">
         <h2>Add Profile</h2>
@@ -148,10 +179,3 @@ function previewImage(event) {
 </script>
 
 <?php include './admin_utils/admin_footer.php'; ?>
-
-<?php
-} else {
-  header("Location: login.php");
-  exit();
-}
-?>

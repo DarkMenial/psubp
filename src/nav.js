@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-
-
->>>>>>> origin/main
 const nav = document.querySelector('nav');
 const navHeight = nav.offsetHeight;
 const shrinkDistance = 200; // Distance in pixels to shrink the nav
@@ -45,13 +40,10 @@ faqItems.forEach(item => {
   });
 });
 
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> origin/main
 // JavaScript code to toggle search bar visibility
 const searchIcon = document.getElementById('search-icon');
 const searchBar = document.getElementById('search-bar');
@@ -75,12 +67,51 @@ searchIcon.addEventListener('mouseout', function() {
   if (!searchIcon.classList.contains('active')) {
     searchIcon.style.color = 'black';
   }
-<<<<<<< HEAD
 });
 
 
 
 
-=======
-});
->>>>>>> origin/main
+
+// banner overlay
+
+
+// Get the image element
+const img = document.querySelector('.container__pages img');
+
+// Calculate the average brightness of the image
+const getAverageBrightness = () => {
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  const imgWidth = img.width;
+  const imgHeight = img.height;
+
+  canvas.width = imgWidth;
+  canvas.height = imgHeight;
+  context.drawImage(img, 0, 0, imgWidth, imgHeight);
+
+  let sum = 0;
+
+  const imageData = context.getImageData(0, 0, imgWidth, imgHeight);
+  const data = imageData.data;
+
+  for (let i = 0; i < data.length; i += 4) {
+    const brightness = (data[i] + data[i + 1] + data[i + 2]) / 3;
+    sum += brightness;
+  }
+
+  const averageBrightness = sum / (imgWidth * imgHeight);
+  return averageBrightness;
+};
+
+// Adjust the overlay color based on the image's average brightness
+const overlay = document.querySelector('.banner__overlay');
+const averageBrightness = getAverageBrightness();
+
+const maxBrightness = 255;  // Max value for RGB channel
+const overlayOpacity = averageBrightness / maxBrightness;
+
+overlay.style.backgroundColor = `rgba(0, 0, 0, ${overlayOpacity})`;
+
+
+

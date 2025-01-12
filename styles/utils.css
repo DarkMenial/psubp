@@ -59,10 +59,10 @@
     box-shadow: -1px -22px -40px 10px rgba(240, 92, 38, 0.5);
 }
 
-.course-card button:hover {
-  background-color: var(--clr-dark);
-  /* background-color: #ed5a1c; */
-} 
+:root {
+  --nav-height: 136px; /* Set the height for your fixed nav */
+  --sticky-nav-height: 50px; /* Set the height for your sticky nav */
+}
 
 /* .banner {
 background-image: url("../public/campus.png");
@@ -105,57 +105,58 @@ border: 2px solid blue;
 
 
 
-  .container__banner {
-    position: relative;
-    max-width: 1536px;
-    margin-top: 136px;
-    height: 210px;
-    overflow: hidden;
-  }
+  /* Banner Container */
+.container__banner {
+  position: relative;
+  max-width: 1536px;
+  /* margin-top: 136px; */
+  margin-top: var(--nav-height); /* This ensures the content doesn't hide behind the fixed nav */
+  height: 190px;
+  overflow: hidden;
+}
 
-  
-  
-  .container__pages img {
-    width: 100%;
-    height: auto;
-    display: block;
-    z-index: 1;
-  }
-  
-  .banner__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 210px;
-    background-color: rgba(0, 0, 0, .8);
-    z-index: 2;
-  }
-  
-  .banner__content {
-    position: absolute;
-    padding: 0 60px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-<<<<<<< HEAD
-=======
-    border: solid red 1px;
->>>>>>> origin/main
-    width: 100%;
-    height: 210px;
-  }
-  
-  
-  .banner__content h2 {
-    font-size: 50px;
-    color: white;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
+/* Image in Pages Container */
+.container__pages img {
+  width: 100%;
+  height: auto;
+  display: block;
+  z-index: 1;
+}
+
+/* Banner Overlay */
+.banner__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+
+/* Banner Content */
+.banner__content {
+  position: absolute;
+  padding: 0 60px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  /* border: 5px solid black; */
+}
+
+/* Heading in Banner Content */
+.banner__content h2 {
+  font-size: 50px;
+  color: white;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 
 
 
@@ -270,10 +271,7 @@ border: 2px solid blue;
   right: 0; /* Adjust the alignment with the parent element */
   padding: 0;
   z-index: 999999;
-<<<<<<< HEAD
   background-color: #ffff;
-=======
->>>>>>> origin/main
 }
 
 

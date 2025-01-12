@@ -1,157 +1,202 @@
 <?php
+require_once './php/db_connect.php';
+
 session_start();
 
 if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
-  ?>
+    // Check if the sidebar state is stored in the session
+    if (!isset($_SESSION['sidebarCollapsed'])) {
+        // Set the initial state of the sidebar
+        $_SESSION['sidebarCollapsed'] = false;
+    }
+
+    // Handle the sidebar toggle action
+    if (isset($_GET['toggle'])) {
+        // Toggle the sidebar state
+        $_SESSION['sidebarCollapsed'] = !$_SESSION['sidebarCollapsed'];
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit();
+    }
+?>
 
 <?php include './admin_utils/admin_header.php'; ?>
 
 <main class="page-wrapper">
-  <div class="card">
-    <div class="card-body">
-      <form id="myForm" action="./php/get_profile.php" method="POST" enctype="multipart/form-data">
-        <h2>Add Profile</h2>
-        <div class="profile-container">
-          <div class="profile-image">
-            <label for="file-upload" class="profile-image-label">
-              <i class="fas fa-camera"></i>
-            </label>
-            <input type="file" id="file-upload" name="image" accept="image/*" onchange="previewImage(event)">
-            <img id="profile-image-preview" src="#" alt="Profile Image Preview" style="display: none;">
-          </div>
+    <div class="lg-box">
+        <h1 class="dashboard-title">Manage Profiles</h1>
+
+        <!-- Filter and Search -->
+        <div class="filter-search">
+            <select id="position-filter" onchange="filterProfiles()">
+                <option value="">All Designations</option>
+                <option value="Faculty">Faculty</option>
+                <option value="Staff">Staff</option>
+                <!-- Add more position options as needed -->
+            </select>
+            <input type="text" id="search" placeholder="Search by full name" oninput="filterProfiles()" style="width: 300px; margin-left: 10px;">
         </div>
 
-        <div class="form-column">
-          <input type="text" name="name" placeholder="Name" required>
-          <input type="text" name="position" placeholder="Position" required>
-          <input type="email" name="email" placeholder="Email" required>
-          <input type="tel" name="phone" placeholder="Phone" required>
-          <textarea name="bio" placeholder="Bio" required></textarea>
-          <button type="submit">Add Profile</button>
+        <!-- Profiles Table -->
+        <table class="profiles-table">
+            <thead>
+                <tr>
+                    <th>Profile ID</th>
+                    <th>Full Name</th>
+                    <th>Designation</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Photo</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td>Mark</td>
+                    <td>Faculty</td>
+                    <td>mark.ea@example.com</td>
+                    <td>+631234567890</td>
+                    <td><img src="path_to_photo" alt="Mark's photo" style="width: 50px; height: 50px;"></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="edit-button" onclick="editProfile('john_doe')">Edit</button>
+                            <button class="archive-button" onclick="archiveProfile('john_doe')">Archive</button>
+                            <button class="delete-button" onclick="deleteProfile('john_doe')">Delete</button>
+                        </div>
+                    </td>
+                </tr> -->
+                <?php include './php/display_profile_table.php'; ?>
+                <!-- Add more rows for each profile -->
+            </tbody>
+        </table>
+
+        <div class="buttons">
+          <a href="create_profile.php" class="create-prpfile-button"><i class="fas fa-plus"></i>Create Profile</a>
         </div>
-      </form>
+
     </div>
-  </div>
 </main>
 
 <style>
-.card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 400px;
-  margin: 20px auto;
-}
+    /* Add styles for the filter and search */
+    .filter-search {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
 
-.card-header {
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #ddd;
-  padding: 10px;
-}
+    .filter-search input, .filter-search select {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
 
-.card-header h2 {
-  margin: 0;
-  font-size: 20px;
-  color: #333;
-}
+    /* Add styles for the profiles table */
+    .profiles-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-.card-body {
-  padding: 20px;
-}
+    .profiles-table th, .profiles-table td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+    }
 
-.card-body input,
-.card-body textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+    .profiles-table th {
+        background-color: #f9f9f9;
+    }
 
-.card-body button[type="submit"] {
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-}
+    .profiles-table tbody tr:hover {
+        background-color: #f5f5f5;
+    }
 
-.card-body button[type="submit"]:hover {
-  background-color: #45a049;
-}
+    /* Add styles for action buttons */
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+    }
 
-.profile-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
+    .action-buttons button {
+        padding: 6px 12px;
+        margin: 0 5px;
+        cursor: pointer;
+    }
 
-.profile-image {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-  background-color: #f5f5f5;
-}
+    .action-buttons .edit-button {
+      background-color: #5cb85c;
+        border: none;
+        color: white;
+    }
 
-.profile-image-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
+    .action-buttons .archive-button {
+      background-color: #5bc0de;
+        border: none;
+        color: white;
+    }
 
-.profile-image-label:hover {
-  opacity: 1;
-}
+    .action-buttons .delete-button {
+        background-color: #d9534f;
+        border: none;
+        color: white;
+    }
 
-.profile-image-label i {
-  color: #fff;
-  font-size: 40px;
-}
+    /* Style the Add Profile button */
+    .add-profile-button {
+        padding: 10px 20px;
+        background-color: #428bca;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
 
-.profile-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: none;
-}
-
-.form-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    .add-profile-button:hover {
+        background-color: #357ebd;
+    }
 </style>
 
 <script>
-function previewImage(event) {
-  var reader = new FileReader();
-  reader.onload = function () {
-    var output = document.getElementById('profile-image-preview');
-    output.src = reader.result;
-    output.style.display = 'block';
-  };
-  reader.readAsDataURL(event.target.files[0]);
-}
-</script>
+    function filterProfiles() {
+        const searchValue = document.getElementById('search').value.toLowerCase();
+        const positionFilter = document.getElementById('position-filter').value.toLowerCase();
+        const rows = document.querySelectorAll('.profiles-table tbody tr');
 
-<?php include './admin_utils/admin_footer.php'; ?>
+        rows.forEach(row => {
+            const fullName = row.cells[0].textContent.toLowerCase();
+            const position = row.cells[1].textContent.toLowerCase();
+
+            if ((fullName.includes(searchValue)) && (position.includes(positionFilter) || positionFilter === '')) {
+                row.style.display = '';
+            } else {
+                row.style display = 'none';
+            }
+        });
+    }
+
+    function editProfile(username) {
+        alert('Editing profile: ' + username);
+        // Add functionality to edit the selected profile
+    }
+
+    function archiveProfile(username) {
+        alert('Archiving profile: ' + username);
+        // Add functionality to archive the selected profile
+    }
+
+    function deleteProfile(username) {
+        alert('Deleting profile: ' + username);
+        // Add functionality to delete the selected profile
+    }
+
+    function addProfile() {
+        alert('Adding a new profile');
+        // Add functionality to add a new profile (e.g., show a form for profile creation)
+    }
+</script>
 
 <?php
 } else {
-  header("Location: login.php");
-  exit();
+    header("Location: login.php");
+    exit();
 }
 ?>

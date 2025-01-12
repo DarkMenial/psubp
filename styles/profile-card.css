@@ -1,41 +1,85 @@
-.card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 300px; /* Adjust the height as needed */
-    padding: 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-image {
-    width: 150px; /* Adjust the size as needed */
-    height: 150px; /* Adjust the size as needed */
-    object-fit: cover;
-    border-radius: 50%;
-  }
-  
-  .card-content {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .card-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .card-program {
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-  
-  .card-contact {
-    font-size: 16px;
-    color: #666;
-  }
-  
+.faculty-staff {
+  padding: 40px 0;
+  background-color: #f5f5f5;
+}
+
+.section-title {
+  font-size: 28px; /* Slightly smaller title */
+  font-weight: bold;
+  color: #f05c26;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* Reduced gap between cards */
+  justify-content: center;
+}
+
+.profile-card {
+  background: #ffffff;
+  /* border: 1px solid #ddd; */
+  border-radius: 8px; /* Reduced border radius */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+  overflow: hidden;
+  width: 300px; /* Smaller width */
+  height: 400px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column; /* Stack posts vertically */
+
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-card:hover {
+  transform: translateY(-8px); /* Slightly smaller hover effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.profile-photo-wrapper {
+  /* border: 2px solid red; */
+  height: 250px; /* Smaller height */
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #f05c26; */
+}
+.profile-photo {
+  width: 200px;
+  height: 200px; /* Smaller height */
+  object-fit: cover;
+  border-radius: 50%; /* Circular photo */
+  padding: 0;
+}
+
+.profile-info {
+  padding: 5px; /* Reduced padding */
+}
+
+.profile-name {
+  font-size: 16px; /* Smaller font size */
+  font-weight: bold;
+  margin-bottom: 2px; /* Reduced margin */
+}
+
+.profile-position {
+  font-size: 14px; /* Smaller font size */
+  color: #000000;
+  margin-bottom: 2px; /* Reduced margin */
+}
+
+.profile-email, .profile-phone {
+  font-size: 10px; /* Smaller font size */
+  color: #555;
+  margin-bottom: 2px; /* Reduced margin */
+}
+
+.profile-bio {
+  font-size: 10px; /* Smaller font size */
+  color: #333;
+}

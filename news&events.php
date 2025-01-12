@@ -18,24 +18,28 @@
 
 
 
-<div class="section"></div>
+<!-- <div class="section"></div> -->
 
 <main>
 
-<section id="news-events">
-  <!-- Main Featured Post -->
-  <div class="news-events container btn">
-  <div class="main-featured">
-
-  <?php include './admin/php/display_post_main_featured.php'; ?>
-
-  </div>
+<section id="news-events" class="news-events section">
+  <div class="container">
+    <div class="featured-post">
+      <!-- Main Featured Post -->
+      <div class="main-featured featured-item">
+        <div class="featured-image">
+          <img src="./public/featured1.jpg" alt="Main Featured Image">
+        </div>
+        <div class="featured-content">
+          <h3 class="featured-title">Main Featured Post Title</h3>
+          <p class="featured-description">Main featured post description goes here.</p>
+          <a href="#" class="btn btn-secondary">View</a>
+        </div>
+      </div>
+    </div>
 </section>
 
 
-
-
-<div class="section"></div>
 
 <section class="container">
     <div id="items-container" class="container__sidemain">
@@ -49,6 +53,9 @@
           <select id="filter-author" name="filter-author">
             <option value="all">All</option>
             <?php
+              require_once './admin/php/db_connect.php';
+
+
             $authorsQuery = "SELECT DISTINCT account_name FROM accounts";
             $authorsResult = mysqli_query($conn, $authorsQuery);
 

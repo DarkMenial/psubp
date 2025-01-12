@@ -1,11 +1,12 @@
-header {
+/* header {
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease; /* Add this line for smooth transitions */
-}
+  transition: all 0.3s ease; 
+  border: 5px yellow solid;
+} */
 
 .nav-content {
   display: flex;
@@ -41,10 +42,9 @@ header {
     right: 0;
     background-color: #fff;
     transition: all 0.3s ease;
-    height: 136px;
+    height: var(--nav-height);
     box-shadow: 0 5px 6px rgba(0, 0, 0, 0.05);
     z-index: 99999;
-    transition: all 0.3s ease;
   }
 
 

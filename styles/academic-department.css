@@ -1,0 +1,95 @@
+/* Academic Departments section styles */
+.academic-departments {
+    background-color: #f9f9f9; /* Set an appropriate background color */
+    padding: 0; /* Add some padding for better spacing */
+  }
+  
+  .academic-departments h2 {
+    text-align: center;
+    margin-bottom: 20px; /* Adjusted margin */
+    font-size: 36px;
+    font-weight: 700;
+    color: #333; /* Slightly adjusted color for better visibility */
+  }
+  
+  .department-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the department cards */
+  }
+  
+  .department-card {
+    width: 250px; /* Adjusted width */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px; /* Added margin for spacing */
+    padding: 10px; /* Added padding */
+    background-color: #fff; /* Set a white background for the cards */
+    transition: transform 0.2s ease-in-out; /* Smooth card hover effect */
+    height: 100%; /* Adjusted height */
+  }
+  
+  .department-card-description {
+    height: 80px; /* Adjusted height */
+    overflow: auto;
+    margin-bottom: 10px;
+    padding: 0 5px;
+  }
+  
+  /* Style scrollbar for WebKit browsers (Chrome, Safari) */
+  .department-card-description::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+  }
+  
+  .department-card-description::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Track color */
+  }
+  
+  .department-card-description::-webkit-scrollbar-thumb {
+    background: #888; /* Thumb color */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  .department-card-description::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Thumb color on hover */
+  }
+  
+  .department-card-title {
+    height: 30px; /* Adjusted height */
+    margin-bottom: 10px;
+    padding: 0 5px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+
+  .department-card:hover {
+    transform: scale(1.05); /* Enlarge slightly on hover */
+  }
+  
+  .department-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0; /* Rounded corners only at the top */
+  }
+  
+
+  .department-card-img {
+    height: 100px;
+  }
+  .department-card h3 {
+    margin: 10px 0;
+    font-size: 16px; /* Adjusted font size */
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+  }
+  
+  .department-card p {
+    margin: 0;
+    font-size: 13px;
+    color: #555; /* Slightly adjusted color */
+    text-align: center;
+  }
+  
