@@ -35,6 +35,7 @@ $universityAbout = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About PSU</title>
     <!-- Include your CSS files -->
+<<<<<<< Updated upstream
     <link rel="stylesheet" href="/psubp/styles/modern-normalize.css">
     <link rel="stylesheet" href="/psubp/styles/post.css">
     <link rel="stylesheet" href="/psubp/styles/academic-calendar.css">
@@ -42,6 +43,15 @@ $universityAbout = [
     <link rel="stylesheet" href="/psubp/styles/style.css">
     <link rel="stylesheet" href="/psubp/styles/utils.css">
     <link rel="stylesheet" href="/psubp/styles/nav-department.css">
+=======
+    <link rel="stylesheet" href="/styles/modern-normalize.css">
+    <link rel="stylesheet" href="/styles/post.css">
+    <link rel="stylesheet" href="/styles/academic-calendar.css">
+    <link rel="stylesheet" href="/styles/news&events.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/utils.css">
+    <link rel="stylesheet" href="/styles/nav-department.css">
+>>>>>>> Stashed changes
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
@@ -101,6 +111,10 @@ $universityAbout = [
 </main>
 
 <!-- Footer -->
+<<<<<<< Updated upstream
 <?php include $_SERVER['DOCUMENT_ROOT'] .'/psubp/html_utils/footer.php'; ?>
+=======
+<?php include $_SERVER['DOCUMENT_ROOT'] .'/html_utils/footer.php'; ?>
+>>>>>>> Stashed changes
 </body>
 </html>

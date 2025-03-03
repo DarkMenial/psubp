@@ -1,7 +1,7 @@
 <?php
 $hostname = 'localhost';
-$username = 'root';
-$password = '';
+$username = 'psubp';
+$password = 'psubp_db2019';
 $database = 'psubp_db';
 date_default_timezone_set('Asia/Manila'); // Adjust as per your region
 

@@ -12,7 +12,10 @@ $assetCategory = 'Hero';
 
 // Get the filename from the database based on criteria
 $filename = getAssetByCriteria($accountId, $assetType, $assetCategory, $conn);
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 ?>
 
     <!-- Hero Section -->
@@ -415,4 +418,8 @@ observer.observe(hero);
   
 
 
+<<<<<<< Updated upstream
   <?php include './html_utils/footer.php';?>
+=======
+<?php include './html_utils/footer.php';?>
+>>>>>>> Stashed changes

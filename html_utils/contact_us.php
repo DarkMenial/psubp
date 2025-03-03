@@ -20,9 +20,26 @@
         <p>Select the department you would like to receive updates from:</p>
         <label for="department-choice">Choose a department:</label>
         <select id="department-choice">
+<<<<<<< Updated upstream
           <option value="bsit">BSIT</option>
           <option value="bshm">BSHM</option>
           <option value="university">University</option>
+=======
+        <option value="all">All</option>
+        <?php
+            $topicsQuery = "SELECT * FROM accounts";
+            $topicsResult = mysqli_query($conn, $topicsQuery);
+
+            while ($row = mysqli_fetch_assoc($topicsResult)) {
+              $topicID = $row['account_id'];
+              $topicName = $row['account_name'];
+
+              echo '<option value="' . $topicName . '">' . $topicName . '</option>';
+            }
+
+            mysqli_free_result($topicsResult);
+            ?>
+>>>>>>> Stashed changes
         </select>
         <input type="email" id="newsletter-email" placeholder="Your Email" required>
         <button onclick="subscribeNewsletter()">Subscribe</button>
@@ -30,6 +47,11 @@
     </section>
   </div>
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
   <!-- Map Section -->
   <section class="map-section">
     <div class="container">
@@ -43,7 +65,11 @@
           allowfullscreen="" 
           loading="lazy" 
           referrerpolicy="no-referrer-when-downgrade">
+<<<<<<< Updated upstream
         </iframe>
+=======
+        </iframe> 
+>>>>>>> Stashed changes
       </div>
     </div>
   </section>

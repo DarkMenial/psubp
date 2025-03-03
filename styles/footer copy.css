@@ -1,0 +1,234 @@
+/* Footer styles */
+.footer {
+    background-color: #2a2a2a;
+    color: #fff;
+    padding: 30px 0;
+    text-align: center;
+    margin-top: auto;
+  }
+  
+  
+  .footer p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .footer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.2s ease;
+  }
+  
+  .footer a:hover {
+    color: #f26a2e;
+  }
+  
+  
+  
+  
+/* Chat Floating Icon Styles */
+#chat-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #f05c26; /* Your orange color */
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* More prominent shadow */
+  font-size: 28px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+#chat-icon:hover {
+  background-color: #d04a1a; /* Darker shade on hover */
+  transform: scale(1.1); /* Slightly bigger on hover */
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999999999;
+  overflow-y: auto;
+}
+
+/* Modal Content */
+.modal-content {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  /* transform: translate(-50%, -50%); */
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px; /* Rounded corners for a cleaner look */
+  width: 400px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.modal-content h2 {
+  font-size: 1.6em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Close Button Styles */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #aaa;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #f05c26; /* Matching the chat icon color */
+}
+
+/* Chat Form Styles */
+form {
+  width: 100%;
+}
+
+form label {
+  font-size: 1.1em;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+form input, form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
+}
+
+form input:focus, form select:focus {
+  border-color: #f05c26;
+}
+
+form button {
+  background-color: #f05c26;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+form button:hover {
+  background-color: #d04a1a; /* Darker shade on hover */
+}
+
+/* Chat Room Modal */
+#chat-room-modal {
+  display: none;
+  position: fixed;
+  /* top: -10px; */
+  /* left: -60px; */
+  z-index: 9999999999999;
+  /* overflow: hidden; */
+  /* width: 100%; */
+}
+
+/* Chat Room Content */
+#chat-room-modal .modal-content {
+  padding: 15px;
+  width: 400px;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+#chat-room-modal h3 {
+  font-size: 1.4em;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+#chat-room-modal #messages {
+  width: 100%;
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+#chat-room-modal textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1em;
+  margin-bottom: 10px;
+  resize: none;
+  transition: border-color 0.3s ease;
+}
+
+#chat-room-modal textarea:focus {
+  border-color: #f05c26;
+}
+
+#chat-room-modal button {
+  background-color: #f05c26;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+#chat-room-modal button:hover {
+  background-color: #d04a1a; /* Darker shade on hover */
+}
+
+/* Animations for Modals */
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-content {
+  animation: modalIn 0.3s ease-in-out;
+}

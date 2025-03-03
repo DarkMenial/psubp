@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<<<<<<< Updated upstream
     <link rel="stylesheet" href="../../psubp/styles/modern-normalize.css" />
     <link rel="stylesheet" href="../../psubp/styles/post.css" />
     <link rel="stylesheet" href="../../psubp/styles/academic-calendar.css" />
@@ -10,6 +11,15 @@
     <link rel="stylesheet" href="../../psubp/styles/style.css" />
     <link rel="stylesheet" href="../../psubp/styles/utils.css" />
     <link rel="stylesheet" href="../../psubp/styles/nav-department.css" />
+=======
+    <link rel="stylesheet" href="../../styles/modern-normalize.css" />
+    <link rel="stylesheet" href="../../styles/post.css" />
+    <link rel="stylesheet" href="../../styles/academic-calendar.css" />
+    <link rel="stylesheet" href="../../styles/news&events.css" />
+    <link rel="stylesheet" href="../../styles/style.css" />
+    <link rel="stylesheet" href="../../styles/utils.css" />
+    <link rel="stylesheet" href="../../styles/nav-department.css" />
+>>>>>>> Stashed changes
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
@@ -31,9 +41,15 @@
       <nav>
         <!-- Logo -->
         <div class="nav-content container">
+<<<<<<< Updated upstream
           <a href="../../psubp/index.php" class="logo-wrapper td-none">
             <div class="logo-img-wrapper">
               <img src="../../psubp/public/logo.png" alt="University Logo" />
+=======
+          <a href="../../index.php" class="logo-wrapper td-none">
+            <div class="logo-img-wrapper">
+              <img src="../../public/logo.png" alt="University Logo" />
+>>>>>>> Stashed changes
             </div>
             <div><span><strong>Palawan State University</strong>
             <br></span>Brooke's Point Campus</div>

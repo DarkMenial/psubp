@@ -1,6 +1,194 @@
 <?php
+<<<<<<< Updated upstream
 require_once $_SERVER['DOCUMENT_ROOT'] . '/psubp/admin/php/db_connect.php';
 
+=======
+session_start();
+require_once $_SERVER['DOCUMENT_ROOT'] . '/psubp/admin/php/db_connect.php';
+
+// ██████╗██╗  ██╗ █████╗ ████████╗
+// ██╔════╝██║  ██║██╔══██╗╚══██╔══╝
+// ██║     ███████║███████║   ██║   
+// ██║     ██╔══██║██╔══██║   ██║   
+// ╚██████╗██║  ██║██║  ██║   ██║   
+//  ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   
+
+
+// Retrieve user session or cookie
+$user_email = $_SESSION['user_email'] ?? $_COOKIE['user_email'] ?? '';
+$user_name = $_SESSION['user_name'] ?? $_COOKIE['user_name'] ?? '';
+$chat_active = isset($_SESSION['chat_id']);
+$chat_department = '';
+$max_cookie_lifetime = 259200; // 3 days
+$extend_time = 86400; // 1 day
+
+
+
+
+// Fetch active chat sessions and latest chat info in a single query
+$sql = "SELECT cs.chat_id, cs.user_name, a.account_name 
+        FROM chat_sessions cs
+        JOIN accounts a ON cs.account_id = a.account_id
+        WHERE cs.user_email = ? AND cs.status != 'closed' 
+        ORDER BY cs.created_at DESC";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $user_email);
+$stmt->execute();
+$chat_sessions = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+// Set session if not active but chat exists
+if (!$chat_active && !empty($chat_sessions)) {
+  $_SESSION['chat_id'] = $chat_sessions[0]['chat_id'];
+  $_SESSION['user_name'] = $chat_sessions[0]['user_name'];
+  $_SESSION['user_email'] = $user_email;
+  $expiration_time = time() + $max_cookie_lifetime;
+  setcookie("chat_id", $chat_sessions[0]['chat_id'], $expiration_time, "/");
+  setcookie("user_name", $chat_sessions[0]['user_name'], $expiration_time, "/");
+  setcookie("user_email", $user_email, $expiration_time, "/");
+  $chat_active = true;
+}
+
+
+
+
+if ($chat_active) {
+    $chat_department = $chat_sessions[0]['account_name'] ?? '';
+
+        // Extend cookies by 1 day but never exceed 3 days from the original set time
+        if (isset($_COOKIE['chat_id'])) {
+          $current_expiration = $_COOKIE['chat_id_exp'] ?? time();
+          $new_expiration = min(time() + $extend_time, $current_expiration + $extend_time, time() + $max_cookie_lifetime);
+          setcookie("chat_id", $_COOKIE['chat_id'], $new_expiration, "/");
+          setcookie("user_name", $_COOKIE['user_name'], $new_expiration, "/");
+          setcookie("user_email", $_COOKIE['user_email'], $new_expiration, "/");
+          setcookie("chat_id_exp", $new_expiration, $new_expiration, "/");
+      }
+}
+
+// Fetch available chat subjects
+$subjectsQuery = "SELECT id, name FROM chat_subjects ORDER BY name ASC";
+$subjectsResult = mysqli_query($conn, $subjectsQuery);
+$chat_subjects = mysqli_fetch_all($subjectsResult, MYSQLI_ASSOC);
+
+// Available departments
+$sql = "SELECT account_id, account_name FROM accounts WHERE account_name IS NOT NULL";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$departments_result = $stmt->get_result();
+
+$all_departments = [];
+while ($row = $departments_result->fetch_assoc()) {
+    $all_departments[] = $row;
+}
+$active_departments = array_column($chat_sessions, 'account_name');
+// Extract account IDs from $all_departments
+$all_department_ids = array_column($all_departments, 'account_id');
+$available_department_ids = array_diff($all_department_ids, $active_departments);
+
+// Now, filter the departments based on the available IDs
+$available_departments = array_filter($all_departments, function ($dept) use ($available_department_ids) {
+    return in_array($dept['account_id'], $available_department_ids);
+});
+
+
+
+  
+// Handle form submission for new chat session
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$chat_active) {
+    $name = $_POST['name'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $department = isset($_POST['account_id']) ? (int) trim($_POST['account_id']) : null;
+    $subject_id = isset($_POST['subject_id']) ? (int) trim($_POST['subject_id']) : null;
+    
+
+    if (!empty($name) && !empty($email) && !empty($department)) {
+        $chat_id = uniqid();
+        $_SESSION['chat_id'] = $chat_id;
+        $_SESSION['user_email'] = $email;
+        $_SESSION['user_name'] = $name;
+
+        // Set cookies to preserve session data for 1 hour
+        setcookie('chat_id', $chat_id, time() + 3600, '/');
+        setcookie('user_name', $name, time() + 3600, '/');
+        setcookie('user_email', $email, time() + 3600, '/');
+
+        $sql = "INSERT INTO chat_sessions (chat_id, user_name, user_email, status, account_id, subject_id) 
+        VALUES (?, ?, ?, 'open', ?, ?)";
+
+$stmt = $conn->prepare($sql);
+
+if (!$stmt) {
+    die("Error preparing statement: " . $conn->error);
+}
+
+$stmt->bind_param("sssii", $chat_id, $name, $email, $department, $subject_id);
+
+if ($stmt->execute()) {
+    echo "✅ Chat session successfully inserted.<br>";
+} else {
+    echo "❌ Error inserting chat session: " . $stmt->error . "<br>";
+}
+
+// Debugging: Verify the inserted data
+$sql_check = "SELECT * FROM chat_sessions WHERE chat_id = ?";
+$stmt_check = $conn->prepare($sql_check);
+$stmt_check->bind_param("s", $chat_id);
+$stmt_check->execute();
+$result = $stmt_check->get_result();
+$chat_data = $result->fetch_assoc();
+
+if ($chat_data) {
+    echo "🔍 Chat session exists in database:<br>";
+    print_r($chat_data);
+} else {
+    echo "❌ Chat session NOT FOUND after insertion.<br>";
+}
+
+
+        // Redirect after session creation
+        header('Refresh: 0');  // This will reload the current page
+        exit();
+    }
+}
+
+
+
+
+// Handle creating a new chat session when a department is selected (using new-chat-form)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $chat_active) {
+    $department = $_POST['account_id'] ?? '';  // Make sure this is the account_id
+
+    if (!empty($department)) {
+        // Create a new session for the selected department
+        $chat_id = uniqid();
+        $_SESSION['chat_id'] = $chat_id;
+        $subject = $_POST['id'] ?? '';  // This will now contain account_id
+
+
+        // Set the new department
+        setcookie('chat_id', $chat_id, time() + 3600, '/');
+
+        $sql = "INSERT INTO chat_sessions (chat_id, user_name, user_email, status, account_id, subject_id) 
+        VALUES (?, ?, ?, 'open', ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssii", $chat_id, $user_name, $user_email, $department, $subject);
+
+        
+
+        // Redirect after session creation
+        header('Refresh: 0');  // This will reload the current page
+        exit();
+    }
+}
+// echo "🔍 Debugging Info:<br>";
+// echo "Session: "; print_r($_SESSION);
+// echo "Cookies: "; print_r($_COOKIE);
+// echo "Database Chat Sessions: "; print_r($chat_sessions);
+
+
+
+
+>>>>>>> Stashed changes
 
 // Function to fetch asset details based on criteria
 function getAssetByCriteria($accountId, $assetType, $assetCategory, $conn) {
@@ -55,6 +243,15 @@ $filename = getAssetByCriteria($accountId, $assetType, $assetCategory, $conn);
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 
     
+        <!-- █████╗ ███████╗███████╗███████╗████████╗███████╗
+            ██╔══██╗██╔════╝██╔════╝██╔════╝╚══██╔══╝██╔════╝
+            ███████║███████╗███████╗█████╗     ██║   ███████╗
+            ██╔══██║╚════██║╚════██║██╔══╝     ██║   ╚════██║
+            ██║  ██║███████║███████║███████╗   ██║   ███████║
+            ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝   ╚═╝   ╚══════╝ -->
+                          
+
+
 
     
   <title>University Website</title>
@@ -167,4 +364,9 @@ $filename = getAssetByCriteria($accountId, $assetType, $assetCategory, $conn);
       </nav>
       
     </header>
+<<<<<<< Updated upstream
     
+=======
+    
+
+>>>>>>> Stashed changes

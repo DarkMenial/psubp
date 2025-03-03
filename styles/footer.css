@@ -27,6 +27,7 @@
   
   
   
+<<<<<<< Updated upstream
   
   /* Chat Floating Icon Styles */
   #chat-icon {
@@ -81,3 +82,213 @@
   }
   
   
+=======
+
+
+
+/* General styles */
+.hidden {
+  display: none;
+}
+
+/* Floating Chat Button */
+.floating-chat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #f05c26;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+.floating-chat-button:hover {
+  background-color: #d84e1e;
+  transform: scale(1.1);
+}
+
+/* Chat Modal */
+#chat-modal {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 350px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  /* display: none; */
+}
+
+/* Chat Header */
+#chat-header {
+  background-color: #f05c26;
+  color: white;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+#chat-header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Chat Sessions */
+#chat-sessions {
+  padding: 15px;
+  background: #fff;
+}
+
+#chat-sessions h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+#chat-sessions ul {
+  list-style: none;
+  padding: 0;
+}
+
+#chat-sessions li {
+  margin-bottom: 8px;
+}
+
+#chat-sessions button {
+  width: 100%;
+  padding: 8px;
+  background: #f05c26;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#chat-sessions button:hover {
+  background: #d84e1e;
+}
+
+/* Chat Form */
+.chat-form {
+  padding: 15px;
+  background: #fff;
+}
+
+.chat-form h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.chat-form input,
+.chat-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.chat-form button {
+  width: 100%;
+  padding: 10px;
+  background: #f05c26;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.chat-form button:hover {
+  background: #d84e1e;
+}
+
+/* Chat Window */
+#chat-window {
+  padding: 15px;
+  background: #fff;
+}
+
+.chat-box {
+  height: 200px;
+  overflow-y: auto;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.typing-area {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.typing-area input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.typing-area button {
+  background: #f05c26;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-left: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.typing-area button:hover {
+  background: #d84e1e;
+}
+
+/* Predefined Questions */
+.bot-questions {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.bot-questions button {
+  flex: 1;
+  padding: 8px;
+  background: #eee;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.bot-questions button:hover {
+  background: #ddd;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  #chat-modal {
+      width: 90%;
+      right: 5%;
+  }
+}
+>>>>>>> Stashed changes

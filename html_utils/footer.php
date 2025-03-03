@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/psubp/html_utils/contact_us.php');?>
 
 
@@ -5,11 +6,36 @@
     <footer class="footer">
       <div class="container">
         <p>&copy; 2023  PSU Brooke's Point. All Rights Reserved.</p>
+=======
+<?php
+// Include necessary PHP files for database connections or other logic
+include($_SERVER['DOCUMENT_ROOT'] . '/psubp/html_utils/contact_us.php');
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PSU Brooke's Point</title>
+  <!-- Add your stylesheets here -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <!-- Your existing content goes here -->
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2023 PSU Brooke's Point. All Rights Reserved.</p>
+>>>>>>> Stashed changes
         <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
       </div>
     </footer>
   </main>
 
+<<<<<<< Updated upstream
   <script type="module" src="../../.../../../psubp/src/nav.js"></script>
 <script type="module" src="../../../src/carousel.js" defer></script>
 <script type="module" src="../../../src/script.js" defer></script>
@@ -91,3 +117,22 @@ function startChat(event) {
   .catch(error => console.error('Error:', error));
 }
 </script>
+=======
+
+
+  <!-- Include any other scripts -->
+  <script type="module" src="../../.../../../psubp/src/nav.js"></script>
+  <script type="module" src="../../../src/carousel.js" defer></script>
+  <script type="module" src="../../../src/script.js" defer></script>
+  <script type="module" src="../../../src/card-toggle.js"></script>
+  <script type="module" src="../../../src/grid&list.js"></script>
+  <script type="module" src="../../../src/main.js" defer></script>
+  <script type="module" src="../../../src/post-quill.js" defer></script>
+</body>
+</html>
+
+<?php
+// Include necessary PHP files for database connections or other logic
+include($_SERVER['DOCUMENT_ROOT'] . '/psubp/html_utils/chat_system.php');
+?>
+>>>>>>> Stashed changes

@@ -3,6 +3,7 @@ require_once 'php/db_connect.php';
 include './php/check_login.php';
 include './admin_utils/admin_header.php';
 
+<<<<<<< Updated upstream
 // Get the chat room ID from the URL
 $chat_id = $_GET['chat_id'] ?? null;
 if ($chat_id) {
@@ -93,6 +94,84 @@ if ($chat_id) {
 
 $conn->close();
 ?>
+=======
+// Fetch all open chats with the account name instead of account_id
+$sql = "SELECT chat_sessions.*, accounts.account_name 
+        FROM chat_sessions 
+        JOIN accounts ON chat_sessions.account_id = accounts.account_id 
+        WHERE chat_sessions.status IN ('open', 'assigned') 
+        ORDER BY chat_sessions.created_at ASC";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$chats = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+?>
+<main class='page-wrapper'>
+    <div class='lg-box'>
+        <?php
+        // Debugging Info
+        // echo "<pre>🔍 Debugging Info:<br>";
+        // echo "Session: "; print_r($_SESSION);
+        // echo "Cookies: "; print_r($_COOKIE);
+        // echo "Database Chat Sessions: "; print_r($chats);
+        // echo "</pre>";
+        ?>
+        
+        <h2>Student Inquiries</h2>
+        <ul>
+            <?php foreach ($chats as $chat): ?>
+                <li>
+                    <span><?php echo htmlspecialchars($chat['user_name']); ?> (<?php echo htmlspecialchars($chat['account_name']); ?>)</span>
+                    <button onclick="joinChat('<?php echo $chat['chat_id']; ?>')">Join Chat</button>
+                    <button onclick="closeChat('<?php echo $chat['chat_id']; ?>')">Close Chat</button>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</main>
+
+<script>
+function joinChat(chatId) {
+  console.log("Joining chat:", chatId);
+    fetch("php/join-chat.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `chat_id=${chatId}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = data.chat_url; // Redirect to staff chat
+        } else {
+            alert("Error: " + data.error);
+        }
+    })
+    .catch(error => {
+        alert("Something went wrong: " + error);
+    });
+}
+
+function closeChat(chatId) {
+    fetch("php/close-chat.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `chat_id=${chatId}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Chat has been closed.");
+            location.reload(); // Refresh the page to remove closed chats
+        } else {
+            alert("Error: " + data.error);
+        }
+    })
+    .catch(error => {
+        alert("Something went wrong: " + error);
+    });
+}
+</script>
+
+>>>>>>> Stashed changes
 
 
 <style>

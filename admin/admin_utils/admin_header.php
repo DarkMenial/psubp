@@ -5,6 +5,10 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 require_once './php/db_connect.php';
+<<<<<<< Updated upstream
+=======
+include_once "admin_chat_system.php";
+>>>>>>> Stashed changes
 
 // Retrieve the selected account ID from the session
 $selectedAccountID = isset($_SESSION['selected_account']) ? $_SESSION['selected_account'] : null;
@@ -110,6 +114,10 @@ $filename = getAssetByCriteria($accountId, $assetType, $assetCategory, $conn);
     <ul class="sidebar-menu">
     <li><a href="./dashboard.php"><i class="fas fa-tachometer-alt"></i><span class="menu-text">DASHBOARD</span></a></li>
     <li><a href="./manage_posts.php"><i class="fas fa-pencil-alt"></i><span class="menu-text">POSTS</span></a></li>
+<<<<<<< Updated upstream
+=======
+    <li><a href="./manage_chat_sessions.php"><i class="fas fa-comments"></i><span class="menu-text">Chat Inquiries</span></a></li>
+>>>>>>> Stashed changes
     <li><a href="./manage_profiles.php"><i class="fas fa-users"></i><span class="menu-text">PROFILES</span></a></li>
     
     <!-- <?php if ($permissionName === 'admin' || $accountName === 'PSUBP'): ?>
